@@ -5,10 +5,11 @@ import {useTheme} from "styled-components/native";
 
 import {Icon, IconProps} from "@components";
 
-import {InputContainer, Input, Label} from "./styles";
+import {InputContainer, Input, Label, ErrorMessage} from "./styles";
 
 export interface TextInputProps extends RNTextInputProps {
   label?: string;
+  errorMessage?: string;
   leftIcon?: IconProps;
   rightIcon?: IconProps;
   variant?: "default" | "multiline";
@@ -16,6 +17,7 @@ export interface TextInputProps extends RNTextInputProps {
 
 export function TextInput({
   label,
+  errorMessage,
   leftIcon,
   rightIcon,
   variant = "default",
@@ -55,6 +57,12 @@ export function TextInput({
           />
         )}
       </InputContainer>
+
+      {errorMessage && (
+        <ErrorMessage preset="caption" color="danger">
+          {errorMessage}
+        </ErrorMessage>
+      )}
     </View>
   );
 }

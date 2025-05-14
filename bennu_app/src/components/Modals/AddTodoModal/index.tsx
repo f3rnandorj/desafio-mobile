@@ -1,32 +1,45 @@
-import React, {useState} from "react";
+import React from "react";
 
+import {zodResolver} from "@hookform/resolvers/zod";
+import {useForm} from "react-hook-form";
 import {useTheme} from "styled-components/native";
 
-import {Button, IconProps, TextInput} from "@components";
+import {Button, FormTextInput, IconProps} from "@components";
 
+import {AddTodoFormData, addTodoFormSchema} from "./addTodoFormSchema";
 import {ButtonsContainer, Container} from "./styles";
 
 export function AddTodoModal() {
-  const [title, setTitle] = useState("");
+  const {control, watch, setValue, handleSubmit} = useForm<AddTodoFormData>({
+    resolver: zodResolver(addTodoFormSchema),
+    defaultValues: {},
+  });
+
   const {spacing} = useTheme();
 
+  const title = watch("todo");
+
   const textInputRightIcon: IconProps | undefined =
-    title.length > 0
+    title?.length > 0
       ? {
           name: "x",
           iconStyle: "solid",
           color: "danger",
-          onPress: () => setTitle(""),
+          onPress: () => setValue("todo", ""),
         }
       : undefined;
 
+  async function createTodo(data: AddTodoFormData) {
+    console.log("createTodo", data);
+  }
+
   return (
     <Container>
-      <TextInput
+      <FormTextInput
+        name="todo"
+        control={control}
         label="Nome da tarefa"
         placeholder="Enter task title"
-        value={title}
-        onChangeText={setTitle}
         rightIcon={textInputRightIcon}
       />
 
@@ -39,10 +52,9 @@ export function AddTodoModal() {
         />
 
         <Button
-          onPress={() => {}}
+          onPress={handleSubmit(createTodo)}
           title="Adicionar Tarefa"
           variant="primary"
-          disabled={title.length === 0}
           style={{marginLeft: spacing.s8}}
         />
       </ButtonsContainer>

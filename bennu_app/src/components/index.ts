@@ -5,3 +5,5 @@ export * from "./TodoList";
 export * from "./TextInput";
 export * from "./Button";
 export * from "./Modals";
+
+export * from "./Form/FormTextInput";
