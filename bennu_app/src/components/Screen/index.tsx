@@ -6,8 +6,10 @@ import {useTheme} from "styled-components/native";
 
 import {useAppSafeArea} from "@hooks";
 
+import {Text} from "../Text";
+
 import {ScrollViewContainer, ViewContainer} from "./components/Container";
-import {Content, Header, Title, HeaderButton} from "./styles";
+import {Content, Header, HeaderButton} from "./styles";
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -36,7 +38,7 @@ export function Screen({
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
   return (
-    <Container>
+    <Container style={{paddingTop: top, paddingBottom: bottom}}>
       {showHeader && (
         <Header>
           {showBackButton && (
@@ -49,14 +51,13 @@ export function Screen({
               />
             </HeaderButton>
           )}
-          {title && <Title>{title}</Title>}
+          {title && <Text preset="heading1">{title}</Text>}
+
           {headerRight}
         </Header>
       )}
 
-      <Content style={[style, {paddingTop: top, paddingBottom: bottom}]}>
-        {children}
-      </Content>
+      <Content style={style}>{children}</Content>
     </Container>
   );
 }

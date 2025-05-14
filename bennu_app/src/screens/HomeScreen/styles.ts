@@ -1,21 +1,7 @@
-import styled from "styled-components/native";
+import styled, {css} from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
-`;
-
-export const Header = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: ${({theme}) => theme.spacing.s16}px;
-  margin-bottom: ${({theme}) => theme.spacing.s16}px;
-`;
-
-export const Title = styled.Text`
-  font-size: ${({theme}) => theme.fontSizes.xxl}px;
-  font-weight: ${({theme}) => theme.fontWeights.bold};
-  color: ${({theme}) => theme.colors.gray800};
 `;
 
 export const AddButton = styled.TouchableOpacity`
@@ -56,11 +42,6 @@ export const InputContainer = styled.View`
   padding: ${({theme}) => theme.spacing.s16}px;
   background-color: ${({theme}) => theme.colors.white};
   border-radius: ${({theme}) => theme.borderRadius.md}px;
-  shadow-color: ${({theme}) => theme.colors.gray400};
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.1;
-  shadow-radius: 3px;
-  elevation: 2;
 `;
 
 export const Input = styled.TextInput`
@@ -82,11 +63,6 @@ export const TaskCard = styled.View`
   padding: ${({theme}) => theme.spacing.s16}px;
   background-color: ${({theme}) => theme.colors.white};
   border-radius: ${({theme}) => theme.borderRadius.md}px;
-  shadow-color: ${({theme}) => theme.colors.gray400};
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.1;
-  shadow-radius: 3px;
-  elevation: 2;
 `;
 
 export const TaskCheckbox = styled.TouchableOpacity`

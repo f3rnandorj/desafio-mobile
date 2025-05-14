@@ -2,13 +2,12 @@ import React from "react";
 import {FlatList} from "react-native";
 
 import Icon from "@react-native-vector-icons/fontawesome6";
+import {useTheme} from "styled-components/native";
 
 import {Screen} from "@components";
 
 import {
   Container,
-  Header,
-  Title,
   AddButton,
   TaskCard,
   TaskText,
@@ -26,16 +25,17 @@ import {
 } from "./styles";
 
 export function HomeScreen() {
-  return (
-    <Screen showHeader={false}>
-      <Container>
-        <Header>
-          <Title>My Tasks</Title>
-          <AddButton>
-            <Icon name="plus" size={20} color="#FFF" iconStyle="solid" />
-          </AddButton>
-        </Header>
+  const {shadows} = useTheme();
 
+  return (
+    <Screen
+      title="My Tasks"
+      headerRight={
+        <AddButton>
+          <Icon name="plus" size={20} color="#FFF" iconStyle="solid" />
+        </AddButton>
+      }>
+      <Container>
         <FilterContainer>
           <FilterOption active={true}>
             <FilterText active={true}>All</FilterText>
@@ -48,7 +48,7 @@ export function HomeScreen() {
           </FilterOption>
         </FilterContainer>
 
-        <InputContainer>
+        <InputContainer {...shadows.md}>
           <TaskCheckbox>
             <Icon name="circle" size={24} color="#D1D5DB" iconStyle="regular" />
           </TaskCheckbox>
@@ -67,7 +67,7 @@ export function HomeScreen() {
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <TaskContainer>
-              <TaskCard>
+              <TaskCard {...shadows.md}>
                 <TaskCheckbox>
                   {item.completed ? (
                     <Icon

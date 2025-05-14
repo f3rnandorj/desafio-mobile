@@ -2,17 +2,10 @@ import styled from "styled-components/native";
 
 export const Header = styled.View`
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding: ${({theme}) => theme.spacing.s16}px;
-  padding-top: ${({theme}) => theme.spacing.s16 + 20}px;
-`;
-
-export const Title = styled.Text`
-  flex: 1;
-  font-size: ${({theme}) => theme.fontSizes.lg}px;
-  font-weight: ${({theme}) => theme.fontWeights.bold};
-  color: ${({theme}) => theme.colors.gray800};
-  text-align: center;
+  margin-bottom: ${({theme}) => theme.spacing.s16}px;
 `;
 
 export const HeaderButton = styled.TouchableOpacity`
