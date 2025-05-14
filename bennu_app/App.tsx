@@ -1,11 +1,23 @@
 import React from "react";
-import {Text, View} from "react-native";
+import {SafeAreaView, Text, View} from "react-native";
 
 function App(): React.JSX.Element {
   return (
-    <View>
-      <Text>Hello world</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{backgroundColor: "green", flex: 1}} />
+
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Text style={{fontSize: 40}}>Miguel tricolor</Text>
+      </View>
+
+      <View style={{backgroundColor: "red", flex: 1}} />
+    </SafeAreaView>
   );
 }
 
