@@ -1,23 +1,25 @@
 import React from "react";
-import {SafeAreaView, Text, View} from "react-native";
+import {StatusBar} from "react-native";
+
+import {SafeAreaProvider} from "react-native-safe-area-context";
+import {ThemeProvider} from "styled-components/native";
+
+import {HomeScreen} from "@screens";
+import {theme} from "@theme";
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{backgroundColor: "green", flex: 1}} />
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+          translucent
+        />
 
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "white",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        <Text style={{fontSize: 40}}>Miguel tricolor</Text>
-      </View>
-
-      <View style={{backgroundColor: "red", flex: 1}} />
-    </SafeAreaView>
+        <HomeScreen />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
