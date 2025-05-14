@@ -1,7 +1,6 @@
 import React from "react";
-import {Text} from "react-native";
 
-import {Screen} from "@components";
+import {Screen, Text} from "@components";
 
 import {Container} from "./styles";
 

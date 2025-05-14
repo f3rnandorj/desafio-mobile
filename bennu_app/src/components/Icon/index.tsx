@@ -4,7 +4,7 @@ import {TouchableOpacity} from "react-native";
 import IconComponent from "@react-native-vector-icons/fontawesome6";
 import {DefaultTheme, useTheme} from "styled-components/native";
 
-type IconProps = ComponentProps<typeof IconComponent> & {
+export type IconProps = ComponentProps<typeof IconComponent> & {
   onPress?: () => void;
   color?: keyof DefaultTheme["colors"];
   hasBackground?: boolean;
