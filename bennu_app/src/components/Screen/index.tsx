@@ -51,7 +51,11 @@ export function Screen({
               />
             </HeaderButton>
           )}
-          {title && <Text preset="heading1">{title}</Text>}
+          {title && (
+            <Text preset="heading1" color="primary">
+              {title}
+            </Text>
+          )}
 
           {headerRight}
         </Header>

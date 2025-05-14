@@ -1,45 +1,46 @@
 import React from "react";
 import {FlatList} from "react-native";
 
-import Icon from "@react-native-vector-icons/fontawesome6";
 import {useTheme} from "styled-components/native";
 
-import {Screen} from "@components";
+import {Icon, Screen} from "@components";
 
 import {
   Container,
-  AddButton,
   TaskCard,
   TaskText,
   TaskActions,
-  ActionButton,
   EmptyState,
   EmptyStateText,
   InputContainer,
   Input,
   TaskContainer,
-  TaskCheckbox,
 } from "./styles";
 
 export function ActiveTasksScreen() {
-  const {shadows} = useTheme();
+  const {shadows, spacing} = useTheme();
 
   return (
-    <Screen
-      title="Lista de Tarefas Ativas"
-      headerRight={
-        <AddButton>
-          <Icon name="plus" size={20} color="#FFF" iconStyle="solid" />
-        </AddButton>
-      }>
+    <Screen title="Lista de Tarefas Ativas">
       <Container>
         <InputContainer {...shadows.md}>
-          <TaskCheckbox>
-            <Icon name="circle" size={24} color="#D1D5DB" iconStyle="regular" />
-          </TaskCheckbox>
+          <Icon
+            onPress={() => {}}
+            name="circle"
+            color="gray400"
+            iconStyle="regular"
+            style={{marginRight: spacing.s8}}
+          />
           <Input
             placeholder="Add a new task..."
             placeholderTextColor="#9CA3AF"
+          />
+          <Icon
+            onPress={() => {}}
+            name="circle-plus"
+            size={30}
+            color="primary"
+            iconStyle="solid"
           />
         </InputContainer>
 
@@ -53,41 +54,40 @@ export function ActiveTasksScreen() {
           renderItem={({item}) => (
             <TaskContainer>
               <TaskCard {...shadows.md}>
-                <TaskCheckbox>
-                  {item.completed ? (
-                    <Icon
-                      name="circle-check"
-                      size={24}
-                      color="#10B981"
-                      iconStyle="solid"
-                    />
-                  ) : (
-                    <Icon
-                      name="circle"
-                      size={24}
-                      color="#D1D5DB"
-                      iconStyle="regular"
-                    />
-                  )}
-                </TaskCheckbox>
+                {item.completed ? (
+                  <Icon
+                    onPress={() => {}}
+                    name="circle-check"
+                    color="success"
+                    iconStyle="solid"
+                    style={{marginRight: spacing.s8}}
+                  />
+                ) : (
+                  <Icon
+                    onPress={() => {}}
+                    name="circle"
+                    color="gray400"
+                    iconStyle="regular"
+                    style={{marginRight: spacing.s8}}
+                  />
+                )}
                 <TaskText completed={item.completed}>{item.title}</TaskText>
                 <TaskActions>
-                  <ActionButton>
-                    <Icon
-                      name="pen"
-                      size={16}
-                      color="#6B7280"
-                      iconStyle="solid"
-                    />
-                  </ActionButton>
-                  <ActionButton>
-                    <Icon
-                      name="trash"
-                      size={16}
-                      color="#EF4444"
-                      iconStyle="solid"
-                    />
-                  </ActionButton>
+                  <Icon
+                    onPress={() => {}}
+                    name="pen"
+                    size={16}
+                    color="gray400"
+                    iconStyle="solid"
+                    style={{paddingRight: spacing.s16}}
+                  />
+                  <Icon
+                    onPress={() => {}}
+                    name="trash"
+                    size={16}
+                    color="danger"
+                    iconStyle="solid"
+                  />
                 </TaskActions>
               </TaskCard>
             </TaskContainer>
@@ -97,7 +97,7 @@ export function ActiveTasksScreen() {
               <Icon
                 name="clipboard-list"
                 size={48}
-                color="#9CA3AF"
+                color="gray400"
                 iconStyle="solid"
               />
               <EmptyStateText>
