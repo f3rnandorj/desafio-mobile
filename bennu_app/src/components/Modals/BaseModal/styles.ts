@@ -10,8 +10,8 @@ export const ModalContainer = styled.View`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ModalContent = styled.View`
-  height: ${height * 0.5}px;
+export const ModalContent = styled.View<{heightPercentage: number}>`
+  height: ${({heightPercentage}) => height * heightPercentage}px;
   background-color: ${({theme}) => theme.colors.background};
   border-top-left-radius: ${({theme}) => theme.borderRadius.lg}px;
   border-top-right-radius: ${({theme}) => theme.borderRadius.lg}px;
@@ -22,7 +22,6 @@ export const ModalHeader = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: ${({theme}) => theme.spacing.s16}px;
 `;
 
 export const Divider = styled.View`

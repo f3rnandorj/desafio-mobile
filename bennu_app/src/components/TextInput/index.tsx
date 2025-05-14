@@ -1,5 +1,5 @@
 import React from "react";
-import {TextInputProps as RNTextInputProps} from "react-native";
+import {TextInputProps as RNTextInputProps, View} from "react-native";
 
 import {useTheme} from "styled-components/native";
 
@@ -21,26 +21,25 @@ export function TextInput({
   variant = "default",
   ...textInputProps
 }: TextInputProps) {
-  const {shadows, spacing} = useTheme();
+  const {shadows, spacing, colors} = useTheme();
 
   return (
-    <>
+    <View>
       {label && <Label preset="label">{label}</Label>}
 
       <InputContainer {...shadows.md}>
         {leftIcon && (
           <Icon
             iconStyle="solid"
+            size={16}
             {...leftIcon}
-            color="primary"
-            size={20}
             style={{marginRight: spacing.s8}}
           />
         )}
 
         <Input
           placeholder="Add a new task..."
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor={colors.gray400}
           multiline={variant === "multiline"}
           numberOfLines={variant === "multiline" ? 3 : 1}
           textAlignVertical={variant === "multiline" ? "top" : "center"}
@@ -50,13 +49,12 @@ export function TextInput({
         {rightIcon && (
           <Icon
             iconStyle="solid"
+            size={16}
             {...rightIcon}
-            color="primary"
-            size={20}
             style={{marginLeft: spacing.s8}}
           />
         )}
       </InputContainer>
-    </>
+    </View>
   );
 }

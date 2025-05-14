@@ -21,7 +21,13 @@ export function ActiveTasksScreen() {
       title="Lista de Tarefas Ativas"
       headerRight={
         <Icon
-          onPress={() => showModal({content: () => AddTodoModal()})}
+          onPress={() =>
+            showModal({
+              content: () => AddTodoModal(),
+              heightPercentage: 0.45,
+              title: "Nova Tarefa",
+            })
+          }
           name="circle-plus"
           size={30}
           color="primary"

@@ -8,4 +8,7 @@ export interface ModalService {
 
 export interface ModalProps extends Omit<RNModalProps, "children"> {
   content: () => React.JSX.Element;
+  heightPercentage?: number;
+  title?: string;
+  headerRight?: React.ReactNode;
 }

@@ -1,8 +1,14 @@
-import {Keyboard, Modal, TouchableWithoutFeedback, View} from "react-native";
+import {
+  Keyboard,
+  Modal,
+  Pressable,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 import {useModal} from "@services";
 
-import {Icon, Text} from "@components";
+import {Text} from "@components";
 import {useAppSafeArea, useKeyboardStatus} from "@hooks";
 
 import {Divider, ModalContainer, ModalContent, ModalHeader} from "./styles";
@@ -16,7 +22,13 @@ export function BaseModal() {
     return null;
   }
 
-  const {content: Content, style, ...modalProps} = modal;
+  const {
+    content: Content,
+    style,
+    heightPercentage,
+    title,
+    ...modalProps
+  } = modal;
 
   return (
     <Modal
@@ -26,20 +38,22 @@ export function BaseModal() {
       onRequestClose={hideModal}
       {...modalProps}>
       <TouchableWithoutFeedback
-        onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}>
+        onPress={Keyboard.dismiss}
+        disabled={!isKeyboardOpen}>
         <ModalContainer>
-          <ModalContent style={{paddingTop: top, paddingBottom: bottom}}>
-            <ModalHeader>
-              <Text preset="heading3">Title</Text>
+          <Pressable
+            style={{flex: 1}}
+            onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}
+          />
 
-              <Icon
-                name="ticket-simple"
-                size={24}
-                color="gray400"
-                iconStyle="solid"
-                onPress={() => {}}
-              />
-            </ModalHeader>
+          <ModalContent
+            heightPercentage={heightPercentage || 0.5}
+            style={{paddingBottom: bottom}}>
+            {title && (
+              <ModalHeader style={{paddingTop: top}}>
+                <Text preset="heading2">{title}</Text>
+              </ModalHeader>
+            )}
 
             <Divider />
 

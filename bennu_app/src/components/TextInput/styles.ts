@@ -4,7 +4,9 @@ import {Text} from "@components";
 
 export const Label = styled(Text)`
   color: ${({theme}) => theme.colors.gray600};
-  margin-bottom: ${({theme}) => theme.spacing.s8}px;
+
+  margin-left: ${({theme}) => theme.spacing.s8}px;
+  margin-bottom: ${({theme}) => theme.spacing.s4}px;
 `;
 
 export const InputContainer = styled.View`
@@ -13,7 +15,7 @@ export const InputContainer = styled.View`
 
   margin: ${({theme}) => theme.spacing.s8}px;
   margin-bottom: ${({theme}) => theme.spacing.s16}px;
-  padding: ${({theme}) => theme.spacing.s16}px;
+  padding-horizontal: ${({theme}) => theme.spacing.s16}px;
 
   background-color: ${({theme}) => theme.colors.white};
 
@@ -27,6 +29,6 @@ export const Input = styled.TextInput`
   font-size: ${({theme}) => theme.fontSizes.md}px;
   color: ${({theme}) => theme.colors.gray800};
 
-  padding: 0;
+  padding-vertical: ${({theme}) => theme.spacing.s16}px;
   margin-left: ${({theme}) => theme.spacing.s8}px;
 `;
