@@ -11,10 +11,19 @@ interface ButtonProps extends TouchableOpacityProps {
   title: string;
 }
 
-export function Button({variant, title, ...buttonProps}: ButtonProps) {
+export function Button({
+  variant,
+  title,
+  disabled,
+  ...buttonProps
+}: ButtonProps) {
   return (
-    <StyledButton variant={variant} {...buttonProps}>
-      <Text bold color={variant === "primary" ? "white" : "primary"}>
+    <StyledButton variant={variant} disabled={disabled} {...buttonProps}>
+      <Text
+        bold
+        color={
+          disabled ? "gray500" : variant === "primary" ? "white" : "primary"
+        }>
         {title}
       </Text>
     </StyledButton>
