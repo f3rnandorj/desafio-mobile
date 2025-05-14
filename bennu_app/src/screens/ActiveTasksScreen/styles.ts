@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components/native";
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
@@ -13,32 +13,11 @@ export const AddButton = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export const FilterContainer = styled.View`
-  flex-direction: row;
-  margin-horizontal: ${({theme}) => theme.spacing.s16}px;
-  margin-bottom: ${({theme}) => theme.spacing.s16}px;
-`;
-
-export const FilterOption = styled.TouchableOpacity<{active: boolean}>`
-  padding: ${({theme}) => theme.spacing.s8}px
-    ${({theme}) => theme.spacing.s16}px;
-  border-radius: ${({theme}) => theme.borderRadius.md}px;
-  margin-right: ${({theme}) => theme.spacing.s8}px;
-  background-color: ${({theme, active}) =>
-    active ? theme.colors.primary : theme.colors.gray100};
-`;
-
-export const FilterText = styled.Text<{active: boolean}>`
-  color: ${({theme, active}) =>
-    active ? theme.colors.white : theme.colors.gray600};
-  font-weight: ${({active, theme}) =>
-    active ? theme.fontWeights.bold : theme.fontWeights.medium};
-`;
-
 export const InputContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  margin: ${({theme}) => theme.spacing.s16}px;
+  margin: ${({theme}) => theme.spacing.s8}px;
+  margin-bottom: ${({theme}) => theme.spacing.s16}px;
   padding: ${({theme}) => theme.spacing.s16}px;
   background-color: ${({theme}) => theme.colors.white};
   border-radius: ${({theme}) => theme.borderRadius.md}px;
@@ -53,8 +32,9 @@ export const Input = styled.TextInput`
 `;
 
 export const TaskContainer = styled.View`
-  padding-horizontal: ${({theme}) => theme.spacing.s16}px;
+  padding-horizontal: ${({theme}) => theme.spacing.s8}px;
   margin-bottom: ${({theme}) => theme.spacing.s8}px;
+  z-index: 999;
 `;
 
 export const TaskCard = styled.View`

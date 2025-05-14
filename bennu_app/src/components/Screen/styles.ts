@@ -4,8 +4,8 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: ${({theme}) => theme.spacing.s16}px;
-  margin-bottom: ${({theme}) => theme.spacing.s16}px;
+  padding-horizontal: ${({theme}) => theme.spacing.s24}px;
+  margin-bottom: ${({theme}) => theme.spacing.s24}px;
 `;
 
 export const HeaderButton = styled.TouchableOpacity`
@@ -14,5 +14,5 @@ export const HeaderButton = styled.TouchableOpacity`
 
 export const Content = styled.View`
   flex: 1;
-  padding: 0 ${({theme}) => theme.spacing.s16}px;
+  padding: 0 ${({theme}) => theme.spacing.s24}px;
 `;

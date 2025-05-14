@@ -19,35 +19,20 @@ import {
   Input,
   TaskContainer,
   TaskCheckbox,
-  FilterContainer,
-  FilterOption,
-  FilterText,
 } from "./styles";
 
-export function HomeScreen() {
+export function ActiveTasksScreen() {
   const {shadows} = useTheme();
 
   return (
     <Screen
-      title="My Tasks"
+      title="Lista de Tarefas Ativas"
       headerRight={
         <AddButton>
           <Icon name="plus" size={20} color="#FFF" iconStyle="solid" />
         </AddButton>
       }>
       <Container>
-        <FilterContainer>
-          <FilterOption active={true}>
-            <FilterText active={true}>All</FilterText>
-          </FilterOption>
-          <FilterOption active={false}>
-            <FilterText active={false}>Active</FilterText>
-          </FilterOption>
-          <FilterOption active={false}>
-            <FilterText active={false}>Completed</FilterText>
-          </FilterOption>
-        </FilterContainer>
-
         <InputContainer {...shadows.md}>
           <TaskCheckbox>
             <Icon name="circle" size={24} color="#D1D5DB" iconStyle="regular" />

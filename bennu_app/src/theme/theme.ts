@@ -23,6 +23,7 @@ export const theme: DefaultTheme = {
     gray900: "#111827",
   },
   spacing: {
+    s2: 2,
     s4: 4,
     s8: 8,
     s16: 16,

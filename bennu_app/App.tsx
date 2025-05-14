@@ -4,7 +4,7 @@ import {StatusBar} from "react-native";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {ThemeProvider} from "styled-components/native";
 
-import {HomeScreen} from "@screens";
+import {Routes} from "@routes";
 import {theme} from "@theme";
 
 function App(): React.JSX.Element {
@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
           translucent
         />
 
-        <HomeScreen />
+        <Routes />
       </ThemeProvider>
     </SafeAreaProvider>
   );

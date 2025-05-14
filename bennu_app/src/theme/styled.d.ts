@@ -24,6 +24,7 @@ declare module "styled-components/native" {
       gray900: string;
     };
     spacing: {
+      s2: number;
       s4: number;
       s8: number;
       s16: number;
