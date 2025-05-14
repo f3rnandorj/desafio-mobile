@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 
-import {Icon, Screen, TodoList} from "@components";
+import {useModal} from "@services";
+
+import {Icon, Screen, TodoList, AddTodoModal} from "@components";
 import {Todo} from "@domain";
 
 import {Container} from "./styles";
@@ -12,12 +14,14 @@ export function ActiveTasksScreen() {
     {id: "3", title: "Implement authentication", completed: false},
   ]);
 
+  const {showModal} = useModal();
+
   return (
     <Screen
       title="Lista de Tarefas Ativas"
       headerRight={
         <Icon
-          onPress={() => {}}
+          onPress={() => showModal({content: () => AddTodoModal()})}
           name="circle-plus"
           size={30}
           color="primary"

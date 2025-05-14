@@ -4,20 +4,26 @@ import {StatusBar} from "react-native";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {ThemeProvider} from "styled-components/native";
 
+import {ContextProviders} from "@context";
 import {Routes} from "@routes";
 import {theme} from "@theme";
+
+import {BaseModal} from "./src/components/Modals/BaseModal";
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <StatusBar
-          barStyle="dark-content"
-          backgroundColor="transparent"
-          translucent
-        />
+        <ContextProviders>
+          <StatusBar
+            barStyle="dark-content"
+            backgroundColor="transparent"
+            translucent
+          />
 
-        <Routes />
+          <Routes />
+          <BaseModal />
+        </ContextProviders>
       </ThemeProvider>
     </SafeAreaProvider>
   );

@@ -15,7 +15,7 @@ export const ModalContent = styled.View`
   background-color: ${({theme}) => theme.colors.background};
   border-top-left-radius: ${({theme}) => theme.borderRadius.lg}px;
   border-top-right-radius: ${({theme}) => theme.borderRadius.lg}px;
-  padding: ${({theme}) => theme.spacing.s24}px;
+  padding-horizontal: ${({theme}) => theme.spacing.s24}px;
 `;
 
 export const ModalHeader = styled.View`

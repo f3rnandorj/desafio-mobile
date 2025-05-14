@@ -7,6 +7,7 @@ module.exports = {
       {
         root: ".",
         alias: {
+          "@context": "./src/context",
           "@components": "./src/components",
           "@hooks": "./src/hooks",
           "@routes": "./src/routes",

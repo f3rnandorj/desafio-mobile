@@ -6,7 +6,7 @@ import {Button, TextInput} from "@components";
 
 import {ButtonsContainer} from "./styles";
 
-export function TodoModal() {
+export function AddTodoModal() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const {spacing} = useTheme();

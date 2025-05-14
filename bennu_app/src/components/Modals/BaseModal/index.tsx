@@ -1,28 +1,34 @@
-import {
-  Keyboard,
-  Modal,
-  ModalProps,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import {Keyboard, Modal, TouchableWithoutFeedback, View} from "react-native";
+
+import {useModal} from "@services";
 
 import {Icon, Text} from "@components";
+import {useAppSafeArea, useKeyboardStatus} from "@hooks";
 
 import {Divider, ModalContainer, ModalContent, ModalHeader} from "./styles";
 
-interface BaseModalProps extends ModalProps {}
+export function BaseModal() {
+  const {modal, hideModal} = useModal();
+  const {top, bottom} = useAppSafeArea();
+  const isKeyboardOpen = useKeyboardStatus();
 
-export function BaseModal({children, style, ...modalProps}: BaseModalProps) {
+  if (!modal) {
+    return null;
+  }
+
+  const {content: Content, style, ...modalProps} = modal;
+
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={true}
-      onRequestClose={() => {}}
+      onRequestClose={hideModal}
       {...modalProps}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <TouchableWithoutFeedback
+        onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}>
         <ModalContainer>
-          <ModalContent>
+          <ModalContent style={{paddingTop: top, paddingBottom: bottom}}>
             <ModalHeader>
               <Text preset="heading3">Title</Text>
 
@@ -37,7 +43,9 @@ export function BaseModal({children, style, ...modalProps}: BaseModalProps) {
 
             <Divider />
 
-            <View style={style}>{children}</View>
+            <View style={style}>
+              <Content />
+            </View>
           </ModalContent>
         </ModalContainer>
       </TouchableWithoutFeedback>

@@ -4,3 +4,4 @@ export * from "./Icon";
 export * from "./TodoList";
 export * from "./TextInput";
 export * from "./Button";
+export * from "./Modals";
