@@ -7,7 +7,9 @@ import {Todo, TodoApi} from ".";
 
 async function getTodoList(): Promise<Todo[]> {
   const response = await todoApi.getTodoList();
-  return response.map(todo => mapTodoWithCompleted(todo));
+  return response.length > 0
+    ? response.map(todo => mapTodoWithCompleted(todo))
+    : [];
 }
 
 async function getTodoById(id: number): Promise<Todo> {

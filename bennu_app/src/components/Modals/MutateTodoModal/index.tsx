@@ -67,15 +67,15 @@ export function MutateTodoModal() {
         <Button
           onPress={hideModal}
           title="Cancelar"
-          variant="secondary"
-          style={{marginRight: spacing.s8}}
+          variant="outline"
+          style={{marginRight: spacing.s8, flex: 1}}
         />
 
         <Button
           onPress={handleSubmit(createTodo)}
           title="Adicionar Tarefa"
           variant="primary"
-          style={{marginLeft: spacing.s8}}
+          style={{marginLeft: spacing.s8, flex: 1}}
         />
       </ButtonsContainer>
     </Container>

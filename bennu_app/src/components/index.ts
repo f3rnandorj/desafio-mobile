@@ -5,6 +5,7 @@ export * from "./TodoList";
 export * from "./TextInput";
 export * from "./Button";
 export * from "./AddNewTodoButton";
+export * from "./Loading";
 
 export * from "./Modals";
 export * from "./Alert";

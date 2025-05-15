@@ -1,25 +1,21 @@
-import {ActivityIndicator} from "react-native";
-
-import {useTheme} from "styled-components/native";
-
-import {Icon, Text} from "@components";
+import {Button, Icon, Loading} from "@components";
+import {useTodoGetList} from "@domain";
 import {useAppSelector} from "@features";
 
-import {EmptyState} from "../../styles";
+import {EmptyState, EmptyStateText} from "./styles";
 
 export function EmptyTodoList() {
-  const {spacing} = useTheme();
   const {isError, isLoading} = useAppSelector(state => state.todo);
+  const {fetchTodos} = useTodoGetList();
 
   if (isLoading) {
     return (
       <EmptyState>
-        <ActivityIndicator />
-        <Text
-          color="gray500"
-          style={{textAlign: "center", marginTop: spacing.s16}}>
+        <Loading />
+
+        <EmptyStateText preset="heading3" color="gray500">
           Loading tasks...
-        </Text>
+        </EmptyStateText>
       </EmptyState>
     );
   }
@@ -27,24 +23,28 @@ export function EmptyTodoList() {
   if (isError) {
     return (
       <EmptyState>
-        <Icon name="wifi" size={48} color="danger" />
-        <Text
-          color="danger"
-          style={{textAlign: "center", marginTop: spacing.s16}}>
+        <Icon name="wifi-off" size={48} color="danger" />
+
+        <EmptyStateText preset="heading3" color="danger">
           Failed to load tasks. Please try again later.
-        </Text>
+        </EmptyStateText>
+
+        <Button
+          title="Recarregar"
+          style={{minWidth: 160}}
+          onPress={fetchTodos}
+        />
       </EmptyState>
     );
   }
 
   return (
     <EmptyState>
-      <Icon name="clipboard-list" size={48} color="gray400" />
-      <Text
-        color="gray500"
-        style={{textAlign: "center", marginTop: spacing.s16}}>
+      <Icon name="clipboard-list" size={48} color="gray500" />
+
+      <EmptyStateText preset="heading3" color="gray500">
         No tasks yet! Add your first task above.
-      </Text>
+      </EmptyStateText>
     </EmptyState>
   );
 }

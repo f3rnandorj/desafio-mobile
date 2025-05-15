@@ -13,7 +13,7 @@ export function AddNewTodoButton() {
         })
       }
       name="plus-circle"
-      size={30}
+      size={40}
       color="primary"
     />
   );

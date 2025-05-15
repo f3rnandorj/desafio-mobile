@@ -4,7 +4,7 @@ import {Text} from "@components";
 
 import {StyledButton} from "./styles";
 
-export type ButtonVariants = "primary" | "secondary";
+export type ButtonVariants = "primary" | "outline";
 
 interface ButtonProps extends TouchableOpacityProps {
   variant?: ButtonVariants;
@@ -12,7 +12,7 @@ interface ButtonProps extends TouchableOpacityProps {
 }
 
 export function Button({
-  variant,
+  variant = "primary",
   title,
   disabled,
   ...buttonProps

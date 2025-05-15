@@ -37,9 +37,3 @@ export const DescriptionText = styled(Text)<{completed: boolean}>`
 export const TaskActions = styled.View`
   flex-direction: row;
 `;
-
-export const EmptyState = styled.View`
-  align-items: center;
-  justify-content: center;
-  padding: ${({theme}) => theme.spacing.s48}px;
-`;
