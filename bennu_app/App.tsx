@@ -7,9 +7,12 @@ import {ThemeProvider} from "styled-components/native";
 import {Alert, Toast} from "@components";
 import {ContextProviders} from "@context";
 import {Routes} from "@routes";
+import {MMKVStorage, initializeStorage} from "@services";
 import {theme} from "@theme";
 
 import {BaseModal} from "./src/components/Modals/BaseModal";
+
+initializeStorage(MMKVStorage);
 
 function App(): React.JSX.Element {
   return (
