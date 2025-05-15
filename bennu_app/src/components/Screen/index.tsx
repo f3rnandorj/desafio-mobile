@@ -38,7 +38,7 @@ export function Screen({
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
   return (
-    <Container style={{paddingTop: top, paddingBottom: bottom}}>
+    <Container style={{paddingTop: top, paddingBottom: bottom, width: "100%"}}>
       {showHeader && (
         <Header>
           {showBackButton && (

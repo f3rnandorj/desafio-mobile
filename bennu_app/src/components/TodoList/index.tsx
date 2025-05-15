@@ -31,6 +31,7 @@ export function TodoList({todos}: Props) {
         id={item.id}
         title={item.title}
         completed={item.completed}
+        description={item.description}
         onToggleStatus={handleToggleStatus}
         onEdit={handleEdit}
         onDelete={handleDelete}
