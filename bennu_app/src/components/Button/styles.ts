@@ -4,13 +4,15 @@ import {ButtonVariants} from ".";
 
 export const StyledButton = styled.TouchableOpacity<{
   variant?: ButtonVariants;
-  disabled?: boolean;
+  isDisabled?: boolean;
 }>`
+  min-height: 56px;
   align-items: center;
+  justify-content: center;
 
-  background-color: ${({theme, variant, disabled}) =>
-    disabled
-      ? theme.colors.gray200
+  background-color: ${({theme, variant, isDisabled}) =>
+    isDisabled
+      ? theme.colors.gray400
       : variant === "primary"
       ? theme.colors.primary
       : "transparent"};
@@ -19,9 +21,9 @@ export const StyledButton = styled.TouchableOpacity<{
   margin: 0 ${({theme}) => theme.spacing.s8}px;
 
   border-radius: ${({theme}) => theme.borderRadius.md}px;
-  border-width: ${({variant, disabled}) =>
-    variant === "outline" && !disabled ? 2 : 0}px;
+  border-width: ${({variant, isDisabled}) =>
+    variant === "outline" && !isDisabled ? 2 : 0}px;
   border-color: ${({theme}) => theme.colors.primary};
 
-  opacity: ${({disabled}) => (disabled ? 0.7 : 1)};
+  opacity: ${({isDisabled}) => (isDisabled ? 0.7 : 1)};
 `;

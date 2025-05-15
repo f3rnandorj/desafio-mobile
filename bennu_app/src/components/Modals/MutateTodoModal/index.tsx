@@ -6,6 +6,7 @@ import {useTheme} from "styled-components/native";
 
 import {Button, FormTextInput, IconProps} from "@components";
 import {useTodoCreate, useTodoGetList} from "@domain";
+import {useAppSelector} from "@features";
 import {useModal, useToast} from "@services";
 
 import {MutateTodoFormData, mutateTodoFormSchema} from "./mutateTodoFormSchema";
@@ -16,6 +17,8 @@ export function MutateTodoModal() {
     resolver: zodResolver(mutateTodoFormSchema),
     defaultValues: {},
   });
+
+  const {isLoading} = useAppSelector(state => state.todo);
 
   const {spacing} = useTheme();
   const {hideModal} = useModal();
@@ -90,6 +93,7 @@ export function MutateTodoModal() {
           title="Adicionar Tarefa"
           variant="primary"
           style={{marginLeft: spacing.s8, flex: 1}}
+          isLoading={isLoading}
         />
       </ButtonsContainer>
     </Container>

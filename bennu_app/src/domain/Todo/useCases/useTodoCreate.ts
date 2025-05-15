@@ -23,7 +23,9 @@ export function useTodoCreate(options?: MutationOptions<void>) {
         options.onError(err.message);
       }
     } finally {
-      dispatch(setIsLoading(false));
+      setTimeout(() => {
+        dispatch(setIsLoading(false));
+      }, 2000);
     }
   }
 
