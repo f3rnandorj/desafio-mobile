@@ -8,5 +8,6 @@ export * from "./AddNewTodoButton";
 
 export * from "./Modals";
 export * from "./Alert";
+export * from "./Toast";
 
 export * from "./Form/FormTextInput";

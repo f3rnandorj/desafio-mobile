@@ -1,6 +1,6 @@
 import {FlatList, ListRenderItemInfo} from "react-native";
 
-import {useAlert} from "@services";
+import {useAlert, useToast} from "@services";
 
 import {Todo} from "@domain";
 
@@ -13,6 +13,7 @@ interface Props {
 
 export function TodoList({todos}: Props) {
   const {showAlert} = useAlert();
+  const {showToast} = useToast();
 
   function handleToggleStatus(id: string) {
     // TODO:
@@ -22,6 +23,11 @@ export function TodoList({todos}: Props) {
   function handleEdit(id: string) {
     // TODO:
     console.log("Edit todo:", id);
+
+    showToast({
+      message: "This feature is not implemented yet.",
+      type: "error",
+    });
   }
 
   function handleDelete(id: string) {

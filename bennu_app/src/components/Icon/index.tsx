@@ -7,7 +7,6 @@ import {DefaultTheme, useTheme} from "styled-components/native";
 export type IconProps = ComponentProps<typeof IconComponent> & {
   onPress?: () => void;
   color?: keyof DefaultTheme["colors"];
-  hasBackground?: boolean;
 };
 
 export function Icon({

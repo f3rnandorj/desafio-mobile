@@ -4,7 +4,7 @@ import {StatusBar} from "react-native";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {ThemeProvider} from "styled-components/native";
 
-import {Alert} from "@components";
+import {Alert, Toast} from "@components";
 import {ContextProviders} from "@context";
 import {Routes} from "@routes";
 import {theme} from "@theme";
@@ -26,6 +26,7 @@ function App(): React.JSX.Element {
 
           <BaseModal />
           <Alert />
+          <Toast />
         </ContextProviders>
       </ThemeProvider>
     </SafeAreaProvider>

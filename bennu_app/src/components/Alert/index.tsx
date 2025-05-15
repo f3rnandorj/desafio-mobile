@@ -52,7 +52,7 @@ export function Alert() {
   }, [hideAlert]);
 
   if (!alert) {
-    return;
+    return null;
   }
 
   if (!alert?.title && !alert?.icon?.name) {
