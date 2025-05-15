@@ -5,6 +5,7 @@
     "paths": {
       "@context": ["src/context"],
       "@components": ["src/components"],
+      "@features": ["src/features"],
       "@hooks": ["src/hooks"],
       "@routes": ["src/routes"],
       "@screens": ["src/screens"],

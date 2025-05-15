@@ -5,7 +5,7 @@ import {Todo} from "@domain";
 
 import {Container} from "./styles";
 
-export function CompletedTasksScreen() {
+export function CompletedTodoScreen() {
   const [todos] = useState<Todo[]>([]);
 
   return (

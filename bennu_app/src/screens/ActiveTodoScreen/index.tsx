@@ -5,7 +5,7 @@ import {Todo} from "@domain";
 
 import {Container} from "./styles";
 
-export function ActiveTasksScreen() {
+export function ActiveTodoScreen() {
   const [todos] = useState<Todo[]>([
     {
       id: "1",

@@ -1,3 +1,3 @@
-export * from "./AllTasksScreen";
-export * from "./ActiveTasksScreen";
-export * from "./CompletedTasksScreen";
+export * from "./AllTodoScreen";
+export * from "./ActiveTodoScreen";
+export * from "./CompletedTodoScreen";

@@ -3,18 +3,14 @@ import {
   BottomTabBarProps,
 } from "@react-navigation/bottom-tabs";
 
-import {
-  AllTasksScreen,
-  ActiveTasksScreen,
-  CompletedTasksScreen,
-} from "../screens";
+import {AllTodoScreen, ActiveTodoScreen, CompletedTodoScreen} from "../screens";
 
 import {BottomTabBar} from "./BottomTabBar";
 
 export type BottomTabParamList = {
-  AllTasksScreen: undefined;
-  ActiveTasksScreen: undefined;
-  CompletedTasksScreen: undefined;
+  AllTodoScreen: undefined;
+  ActiveTodoScreen: undefined;
+  CompletedTodoScreen: undefined;
 };
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -26,12 +22,9 @@ export function BottomTabNavigator() {
 
   return (
     <Tab.Navigator tabBar={renderTabBar} screenOptions={{headerShown: false}}>
-      <Tab.Screen name="ActiveTasksScreen" component={ActiveTasksScreen} />
-      <Tab.Screen
-        name="CompletedTasksScreen"
-        component={CompletedTasksScreen}
-      />
-      <Tab.Screen name="AllTasksScreen" component={AllTasksScreen} />
+      <Tab.Screen name="ActiveTodoScreen" component={ActiveTodoScreen} />
+      <Tab.Screen name="CompletedTodoScreen" component={CompletedTodoScreen} />
+      <Tab.Screen name="AllTodoScreen" component={AllTodoScreen} />
     </Tab.Navigator>
   );
 }

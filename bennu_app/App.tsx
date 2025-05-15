@@ -11,6 +11,7 @@ import {MMKVStorage, initializeStorage} from "@services";
 import {theme} from "@theme";
 
 import {BaseModal} from "./src/components/Modals/BaseModal";
+import {ReduxProvider} from "./src/features/provider";
 
 initializeStorage(MMKVStorage);
 
@@ -18,19 +19,21 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <ContextProviders>
-          <StatusBar
-            barStyle="dark-content"
-            backgroundColor="transparent"
-            translucent
-          />
+        <ReduxProvider>
+          <ContextProviders>
+            <StatusBar
+              barStyle="dark-content"
+              backgroundColor="transparent"
+              translucent
+            />
 
-          <Routes />
+            <Routes />
 
-          <BaseModal />
-          <Alert />
-          <Toast />
-        </ContextProviders>
+            <BaseModal />
+            <Alert />
+            <Toast />
+          </ContextProviders>
+        </ReduxProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

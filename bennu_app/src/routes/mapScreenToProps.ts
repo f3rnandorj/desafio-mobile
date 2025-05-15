@@ -6,13 +6,13 @@ export const mapScreenToProps: Record<
     label: string;
   }
 > = {
-  AllTasksScreen: {
+  AllTodoScreen: {
     label: "Todos",
   },
-  ActiveTasksScreen: {
+  ActiveTodoScreen: {
     label: "Ativos",
   },
-  CompletedTasksScreen: {
+  CompletedTodoScreen: {
     label: "Concluídos",
   },
 };
