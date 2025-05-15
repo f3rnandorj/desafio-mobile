@@ -1,21 +1,17 @@
-import React, {useState} from "react";
+import React from "react";
 
 import {AddNewTodoButton, Screen, TodoList} from "@components";
-import {Todo} from "@domain";
+import {useAppSelector} from "@features";
 
 import {Container} from "./styles";
 
 export function AllTodoScreen() {
-  const [todos] = useState<Todo[]>([
-    {id: "1", title: "Complete project proposal", completed: false},
-    {id: "2", title: "Design UI mockups", completed: true},
-    {id: "3", title: "Implement authentication", completed: false},
-  ]);
+  const todoData = useAppSelector(state => state.todo);
 
   return (
     <Screen title="Todas Tarefas" headerRight={<AddNewTodoButton />}>
       <Container>
-        <TodoList todos={todos} />
+        <TodoList todos={todoData.todos} />
       </Container>
     </Screen>
   );

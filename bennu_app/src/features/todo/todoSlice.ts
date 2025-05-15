@@ -5,19 +5,21 @@ import {Todo} from "@domain";
 
 interface TodoState {
   todos: Todo[];
-  loading: boolean;
+  isLoading: boolean;
+  isError: boolean;
 }
 
 const initialState: TodoState = {
   todos: [],
-  loading: false,
+  isLoading: false,
+  isError: false,
 };
 
 const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
-    setTodos(state, action: PayloadAction<Todo[]>) {
+    setTodoList(state, action: PayloadAction<Todo[]>) {
       state.todos = action.payload;
     },
     addTodo(state, action: PayloadAction<Todo>) {
@@ -34,13 +36,22 @@ const todoSlice = createSlice({
         state.todos[index] = action.payload;
       }
     },
-    setLoading(state, action: PayloadAction<boolean>) {
-      state.loading = action.payload;
+    setIsLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
+    },
+    setIsError(state, action: PayloadAction<boolean>) {
+      state.isError = action.payload;
     },
   },
 });
 
-export const {setTodos, addTodo, removeTodo, updateTodo, setLoading} =
-  todoSlice.actions;
+export const {
+  setTodoList,
+  addTodo,
+  removeTodo,
+  updateTodo,
+  setIsLoading,
+  setIsError,
+} = todoSlice.actions;
 
 export default todoSlice.reducer;
