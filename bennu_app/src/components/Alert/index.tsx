@@ -1,8 +1,9 @@
 import React, {useEffect} from "react";
 import {ActivityIndicator, BackHandler} from "react-native";
 
-import {useAlert} from "@services";
 import {useTheme} from "styled-components/native";
+
+import {useAlert} from "@services";
 
 import {Icon} from "../Icon";
 

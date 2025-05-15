@@ -9,10 +9,10 @@ import {
   View,
 } from "react-native";
 
-import {useModal} from "@services";
 
 import {Text} from "@components";
 import {useAppSafeArea, useKeyboardStatus} from "@hooks";
+import {useModal} from "@services";
 
 import {Divider, ModalContainer, ModalContent, ModalHeader} from "./styles";
 

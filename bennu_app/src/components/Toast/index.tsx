@@ -1,9 +1,10 @@
 import React, {useEffect} from "react";
 import {ColorValue, Dimensions, ViewProps} from "react-native";
 
-import {ToastPosition, ToastType, useToast} from "@services";
 import Animated, {FadeIn, FadeOut} from "react-native-reanimated";
 import {useTheme} from "styled-components/native";
+
+import {ToastPosition, ToastType, useToast} from "@services";
 
 import {Icon, IconProps} from "../Icon";
 

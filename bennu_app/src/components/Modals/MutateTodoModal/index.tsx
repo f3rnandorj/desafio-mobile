@@ -1,11 +1,11 @@
 import React from "react";
 
 import {zodResolver} from "@hookform/resolvers/zod";
-import {useModal} from "@services";
 import {useForm} from "react-hook-form";
 import {useTheme} from "styled-components/native";
 
 import {Button, FormTextInput, IconProps} from "@components";
+import {useModal} from "@services";
 
 import {MutateTodoFormData, mutateTodoFormSchema} from "./mutateTodoFormSchema";
 import {ButtonsContainer, Container} from "./styles";

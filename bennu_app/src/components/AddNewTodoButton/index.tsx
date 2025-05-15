@@ -1,6 +1,6 @@
+import {MutateTodoModal, Icon} from "@components";
 import {useModal} from "@services";
 
-import {MutateTodoModal, Icon} from "@components";
 
 export function AddNewTodoButton() {
   const {showModal} = useModal();

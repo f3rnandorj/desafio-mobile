@@ -1,8 +1,7 @@
 import {FlatList, ListRenderItemInfo} from "react-native";
 
-import {useAlert, useToast} from "@services";
-
 import {Todo} from "@domain";
+import {useAlert, useToast} from "@services";
 
 import {EmptyListMessage} from "./components/EmptyListMessage";
 import {TodoItem} from "./components/TodoItem";
