@@ -4,3 +4,9 @@ export interface Todo {
   completed: boolean;
   description?: string;
 }
+
+export interface TodoApi {
+  id: string;
+  title: string;
+  description?: string;
+}

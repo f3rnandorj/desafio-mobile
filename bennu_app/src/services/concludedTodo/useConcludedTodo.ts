@@ -5,7 +5,7 @@ import {storage} from "../storage";
 
 import {ConcludedTodoService} from "./concludedTodoTypes";
 
-const concludedTodoService = create<ConcludedTodoService>()(
+export const concludedTodoService = create<ConcludedTodoService>()(
   persist(
     (set, get) => ({
       concludedTodoList: [],
