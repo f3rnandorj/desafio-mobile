@@ -12,7 +12,7 @@ export function ModalProvider({children}: React.PropsWithChildren<{}>) {
   const [modal, setModal] = useState<ModalService["modal"]>(null);
 
   function showModal(_modal: ModalProps) {
-    setModal({visible: true, ..._modal});
+    setModal({..._modal});
   }
 
   function hideModal() {

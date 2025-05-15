@@ -21,7 +21,7 @@ export function Icon({
 
   if (onPress) {
     return (
-      <TouchableOpacity onPress={onPress} style={style}>
+      <TouchableOpacity onPress={onPress} style={style} hitSlop={10}>
         <IconComponent size={size} color={colors[color]} {...iconProps} />
       </TouchableOpacity>
     );

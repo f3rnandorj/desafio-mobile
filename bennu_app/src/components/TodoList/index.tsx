@@ -1,5 +1,7 @@
 import {FlatList, ListRenderItemInfo} from "react-native";
 
+import {useAlert} from "@services";
+
 import {Todo} from "@domain";
 
 import {EmptyListMessage} from "./components/EmptyListMessage";
@@ -10,6 +12,8 @@ interface Props {
 }
 
 export function TodoList({todos}: Props) {
+  const {showAlert} = useAlert();
+
   function handleToggleStatus(id: string) {
     // TODO:
     console.log("Toggle status for todo:", id);
@@ -23,6 +27,20 @@ export function TodoList({todos}: Props) {
   function handleDelete(id: string) {
     // TODO:
     console.log("Delete todo:", id);
+
+    showAlert({
+      title: "Deletar tarefa",
+      subTitle: "Você tem certeza que deseja deletar essa tarefa?",
+      action: {
+        onConfirm: () => console.log("Todo deleted:", id),
+        onCancel: () => console.log("Todo delete canceled"),
+      },
+      icon: {
+        name: "trash",
+        color: "danger",
+        iconStyle: "solid",
+      },
+    });
   }
 
   function renderItem({item}: ListRenderItemInfo<Todo>) {

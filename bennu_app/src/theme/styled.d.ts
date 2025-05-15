@@ -27,6 +27,7 @@ declare module "styled-components/native" {
       s2: number;
       s4: number;
       s8: number;
+      s12: number;
       s16: number;
       s24: number;
       s32: number;

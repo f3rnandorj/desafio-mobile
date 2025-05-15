@@ -1,9 +1,13 @@
-import {ModalProvider} from "@services";
+import {AlertProvider, ModalProvider} from "@services";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export function ContextProviders({children}: Props) {
-  return <ModalProvider>{children}</ModalProvider>;
+  return (
+    <ModalProvider>
+      <AlertProvider>{children}</AlertProvider>
+    </ModalProvider>
+  );
 }
