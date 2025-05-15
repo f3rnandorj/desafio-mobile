@@ -22,7 +22,7 @@ export const ModalContent = styled.View<{heightPercentage?: number}>`
 
   background-color: ${({theme}) => theme.colors.background};
 
-  padding-horizontal: ${({theme}) => theme.spacing.s24}px;
+  padding: 0 ${({theme}) => theme.spacing.s24}px;
 
   border-top-left-radius: ${({theme}) => theme.borderRadius.lg}px;
   border-top-right-radius: ${({theme}) => theme.borderRadius.lg}px;
@@ -38,5 +38,5 @@ export const Divider = styled.View`
   height: 1px;
 
   background-color: ${({theme}) => theme.colors.gray200};
-  margin-vertical: ${({theme}) => theme.spacing.s16}px;
+  margin: ${({theme}) => theme.spacing.s16}px 0;
 `;

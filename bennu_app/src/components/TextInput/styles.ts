@@ -14,7 +14,7 @@ export const InputContainer = styled.View`
   align-items: center;
 
   margin: ${({theme}) => theme.spacing.s8}px;
-  padding-horizontal: ${({theme}) => theme.spacing.s16}px;
+  padding: 0 ${({theme}) => theme.spacing.s16}px;
 
   background-color: ${({theme}) => theme.colors.white};
 
@@ -28,7 +28,7 @@ export const Input = styled.TextInput`
   font-size: ${({theme}) => theme.fontSizes.md}px;
   color: ${({theme}) => theme.colors.gray800};
 
-  padding-vertical: ${({theme}) => theme.spacing.s16}px;
+  padding: ${({theme}) => theme.spacing.s16}px 0;
   margin-left: ${({theme}) => theme.spacing.s8}px;
 `;
 

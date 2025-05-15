@@ -4,7 +4,7 @@ export const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-horizontal: ${({theme}) => theme.spacing.s24}px;
+  padding: 0 ${({theme}) => theme.spacing.s24}px;
   margin-bottom: ${({theme}) => theme.spacing.s24}px;
 `;
 

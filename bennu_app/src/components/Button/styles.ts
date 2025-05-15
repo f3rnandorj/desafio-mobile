@@ -16,7 +16,7 @@ export const StyledButton = styled.TouchableOpacity<{
   padding: ${({theme}) => theme.spacing.s16}px;
   border-radius: ${({theme}) => theme.borderRadius.md}px;
   align-items: center;
-  margin-horizontal: ${({theme}) => theme.spacing.s8}px;
+  margin: 0 ${({theme}) => theme.spacing.s8}px;
   border-width: ${({variant, disabled}) =>
     variant === "secondary" && !disabled ? 1 : 0}px;
   border-color: ${({theme}) => theme.colors.gray300};
