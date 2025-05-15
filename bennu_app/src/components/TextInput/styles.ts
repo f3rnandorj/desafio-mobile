@@ -23,7 +23,7 @@ export const InputContainer = styled.View`
 
 export const Input = styled.TextInput`
   flex: 1;
-  min-height: ${props => (props.multiline ? "80px" : "auto")};
+  min-height: ${props => (props.multiline ? "90px" : "auto")};
 
   font-size: ${({theme}) => theme.fontSizes.md}px;
   color: ${({theme}) => theme.colors.gray800};

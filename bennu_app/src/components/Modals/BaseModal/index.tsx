@@ -1,7 +1,10 @@
 import {
   Keyboard,
+  KeyboardAvoidingView,
   Modal,
+  Platform,
   Pressable,
+  ScrollView,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -33,36 +36,42 @@ export function BaseModal() {
   return (
     <Modal
       animationType="slide"
-      transparent={true}
-      visible={true}
+      transparent
+      visible
       onRequestClose={hideModal}
       {...modalProps}>
-      <TouchableWithoutFeedback
-        onPress={Keyboard.dismiss}
-        disabled={!isKeyboardOpen}>
-        <ModalContainer>
-          <Pressable
-            style={{flex: 1}}
-            onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}
-          />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{flex: 1}}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ModalContainer>
+            <Pressable
+              style={{flex: 1}}
+              onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}
+            />
 
-          <ModalContent
-            heightPercentage={heightPercentage || 0.5}
-            style={{paddingBottom: bottom}}>
-            {title && (
-              <ModalHeader style={{paddingTop: top}}>
-                <Text preset="heading2">{title}</Text>
-              </ModalHeader>
-            )}
+            <ModalContent
+              heightPercentage={heightPercentage}
+              style={{paddingBottom: bottom + 20}}>
+              <ScrollView
+                keyboardShouldPersistTaps="handled"
+                contentContainerStyle={{flexGrow: 1}}>
+                {title && (
+                  <ModalHeader style={{paddingTop: top}}>
+                    <Text preset="heading2">{title}</Text>
+                  </ModalHeader>
+                )}
 
-            <Divider />
+                <Divider />
 
-            <View style={style}>
-              <Content />
-            </View>
-          </ModalContent>
-        </ModalContainer>
-      </TouchableWithoutFeedback>
+                <View style={style}>
+                  <Content />
+                </View>
+              </ScrollView>
+            </ModalContent>
+          </ModalContainer>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </Modal>
   );
 }

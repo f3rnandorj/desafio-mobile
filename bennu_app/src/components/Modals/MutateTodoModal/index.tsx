@@ -1,26 +1,29 @@
 import React from "react";
 
 import {zodResolver} from "@hookform/resolvers/zod";
+import {useModal} from "@services";
 import {useForm} from "react-hook-form";
 import {useTheme} from "styled-components/native";
 
 import {Button, FormTextInput, IconProps} from "@components";
 
-import {AddTodoFormData, addTodoFormSchema} from "./addTodoFormSchema";
+import {MutateTodoFormData, mutateTodoFormSchema} from "./mutateTodoFormSchema";
 import {ButtonsContainer, Container} from "./styles";
 
-export function AddTodoModal() {
-  const {control, watch, setValue, handleSubmit} = useForm<AddTodoFormData>({
-    resolver: zodResolver(addTodoFormSchema),
+export function MutateTodoModal() {
+  const {control, watch, setValue, handleSubmit} = useForm<MutateTodoFormData>({
+    resolver: zodResolver(mutateTodoFormSchema),
     defaultValues: {},
   });
 
   const {spacing} = useTheme();
+  const {hideModal} = useModal();
 
   const title = watch("todo");
+  const description = watch("todoDescription");
 
-  const textInputRightIcon: IconProps | undefined =
-    title?.length > 0
+  const titleRightIcon: IconProps | undefined =
+    title && title.length > 0
       ? {
           name: "x",
           iconStyle: "solid",
@@ -29,7 +32,17 @@ export function AddTodoModal() {
         }
       : undefined;
 
-  async function createTodo(data: AddTodoFormData) {
+  const descriptionRightIcon: IconProps | undefined =
+    description && description.length > 0
+      ? {
+          name: "x",
+          iconStyle: "solid",
+          color: "danger",
+          onPress: () => setValue("todoDescription", ""),
+        }
+      : undefined;
+
+  async function createTodo(data: MutateTodoFormData) {
     console.log("createTodo", data);
   }
 
@@ -38,14 +51,23 @@ export function AddTodoModal() {
       <FormTextInput
         name="todo"
         control={control}
-        label="Nome da tarefa"
+        label="Nome da tarefa*"
         placeholder="Enter task title"
-        rightIcon={textInputRightIcon}
+        rightIcon={titleRightIcon}
+      />
+
+      <FormTextInput
+        name="todoDescription"
+        control={control}
+        variant="multiline"
+        label="Descrição da tarefa"
+        placeholder="Enter task description"
+        rightIcon={descriptionRightIcon}
       />
 
       <ButtonsContainer>
         <Button
-          onPress={() => {}}
+          onPress={hideModal}
           title="Cancelar"
           variant="secondary"
           style={{marginRight: spacing.s8}}

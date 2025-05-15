@@ -1,5 +1,5 @@
 import React from "react";
-import {ViewStyle} from "react-native";
+import {KeyboardAvoidingView, Platform, ViewStyle} from "react-native";
 
 import Icon from "@react-native-vector-icons/fontawesome6";
 import {useTheme} from "styled-components/native";
@@ -38,30 +38,35 @@ export function Screen({
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
   return (
-    <Container style={{paddingTop: top, paddingBottom: bottom, width: "100%"}}>
-      {showHeader && (
-        <Header>
-          {showBackButton && (
-            <HeaderButton onPress={onBackPress}>
-              <Icon
-                name="arrow-left"
-                size={20}
-                color={colors.gray800}
-                iconStyle="solid"
-              />
-            </HeaderButton>
-          )}
-          {title && (
-            <Text preset="heading1" color="primary">
-              {title}
-            </Text>
-          )}
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <Container
+        style={{paddingTop: top, paddingBottom: bottom, width: "100%"}}>
+        {showHeader && (
+          <Header>
+            {showBackButton && (
+              <HeaderButton onPress={onBackPress}>
+                <Icon
+                  name="arrow-left"
+                  size={20}
+                  color={colors.gray800}
+                  iconStyle="solid"
+                />
+              </HeaderButton>
+            )}
+            {title && (
+              <Text preset="heading1" color="primary">
+                {title}
+              </Text>
+            )}
 
-          {headerRight}
-        </Header>
-      )}
+            {headerRight}
+          </Header>
+        )}
 
-      <Content style={style}>{children}</Content>
-    </Container>
+        <Content style={style}>{children}</Content>
+      </Container>
+    </KeyboardAvoidingView>
   );
 }

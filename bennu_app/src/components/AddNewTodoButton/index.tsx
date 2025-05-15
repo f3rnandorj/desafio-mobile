@@ -1,6 +1,6 @@
 import {useModal} from "@services";
 
-import {AddTodoModal, Icon} from "@components";
+import {MutateTodoModal, Icon} from "@components";
 
 export function AddNewTodoButton() {
   const {showModal} = useModal();
@@ -9,8 +9,7 @@ export function AddNewTodoButton() {
     <Icon
       onPress={() =>
         showModal({
-          content: () => AddTodoModal(),
-          heightPercentage: 0.45,
+          content: () => MutateTodoModal(),
           title: "Nova Tarefa",
         })
       }
