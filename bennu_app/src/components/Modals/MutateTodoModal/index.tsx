@@ -25,8 +25,7 @@ export function MutateTodoModal() {
   const titleRightIcon: IconProps | undefined =
     title && title.length > 0
       ? {
-          name: "x",
-          iconStyle: "solid",
+          name: "alpha-x",
           color: "danger",
           onPress: () => setValue("todo", ""),
         }
@@ -35,8 +34,7 @@ export function MutateTodoModal() {
   const descriptionRightIcon: IconProps | undefined =
     description && description.length > 0
       ? {
-          name: "x",
-          iconStyle: "solid",
+          name: "alpha-x",
           color: "danger",
           onPress: () => setValue("todoDescription", ""),
         }

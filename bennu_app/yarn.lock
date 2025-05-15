@@ -1614,10 +1614,10 @@
     picocolors "^1.1.1"
     plist "^3.1.0"
 
-"@react-native-vector-icons/fontawesome6@^12.0.0":
+"@react-native-vector-icons/material-design-icons@^12.0.0":
   version "12.0.0"
-  resolved "https://registry.yarnpkg.com/@react-native-vector-icons/fontawesome6/-/fontawesome6-12.0.0.tgz#4344f030f4d102ece2268934a7433db280ff76ca"
-  integrity sha512-ETPADOXOeXAp7qYF27BGH9VkM1NuNRzxgH+zQOolAXefqmZtLlivqaYrLNxHe/wFy/ivkRxjkkETWRMMng+ciA==
+  resolved "https://registry.yarnpkg.com/@react-native-vector-icons/material-design-icons/-/material-design-icons-12.0.0.tgz#a37c04dce024b07a711cbe5524bc614fd71fca6d"
+  integrity sha512-yFyxn6YxIY5LfM8HGfW9SwoPCuzBJ7j6yb6aP6tVuhHRxYKjlDRuiEpW0Q53g6w3VUTzJIrthXIFkhLHfGZOZg==
   dependencies:
     "@react-native-vector-icons/common" "^12.0.0"
 

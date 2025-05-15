@@ -1,7 +1,7 @@
 import {ComponentProps} from "react";
 import {TouchableOpacity} from "react-native";
 
-import IconComponent from "@react-native-vector-icons/fontawesome6";
+import IconComponent from "@react-native-vector-icons/material-design-icons";
 import {DefaultTheme, useTheme} from "styled-components/native";
 
 export type IconProps = ComponentProps<typeof IconComponent> & {

@@ -1,11 +1,9 @@
 import React from "react";
 import {KeyboardAvoidingView, Platform, ViewStyle} from "react-native";
 
-import Icon from "@react-native-vector-icons/fontawesome6";
-import {useTheme} from "styled-components/native";
-
 import {useAppSafeArea} from "@hooks";
 
+import {Icon} from "../Icon";
 import {Text} from "../Text";
 
 import {ScrollViewContainer, ViewContainer} from "./components/Container";
@@ -33,7 +31,6 @@ export function Screen({
   onBackPress,
 }: ScreenProps) {
   const {top, bottom} = useAppSafeArea();
-  const {colors} = useTheme();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
@@ -47,12 +44,7 @@ export function Screen({
           <Header>
             {showBackButton && (
               <HeaderButton onPress={onBackPress}>
-                <Icon
-                  name="arrow-left"
-                  size={20}
-                  color={colors.gray800}
-                  iconStyle="solid"
-                />
+                <Icon name="arrow-left" size={20} color="gray800" />
               </HeaderButton>
             )}
             {title && (

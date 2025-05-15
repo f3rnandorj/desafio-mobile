@@ -31,12 +31,7 @@ export function TextInput({
 
       <InputContainer {...shadows.md}>
         {leftIcon && (
-          <Icon
-            iconStyle="solid"
-            size={16}
-            {...leftIcon}
-            style={{marginRight: spacing.s8}}
-          />
+          <Icon size={16} {...leftIcon} style={{marginRight: spacing.s8}} />
         )}
 
         <Input
@@ -49,12 +44,7 @@ export function TextInput({
         />
 
         {rightIcon && (
-          <Icon
-            iconStyle="solid"
-            size={16}
-            {...rightIcon}
-            style={{marginLeft: spacing.s8}}
-          />
+          <Icon size={16} {...rightIcon} style={{marginLeft: spacing.s8}} />
         )}
       </InputContainer>
 

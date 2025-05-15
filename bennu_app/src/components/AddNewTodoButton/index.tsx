@@ -1,7 +1,6 @@
 import {MutateTodoModal, Icon} from "@components";
 import {useModal} from "@services";
 
-
 export function AddNewTodoButton() {
   const {showModal} = useModal();
 
@@ -13,10 +12,9 @@ export function AddNewTodoButton() {
           title: "Nova Tarefa",
         })
       }
-      name="circle-plus"
+      name="plus-circle"
       size={30}
       color="primary"
-      iconStyle="solid"
     />
   );
 }

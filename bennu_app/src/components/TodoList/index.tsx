@@ -3,7 +3,7 @@ import {FlatList, ListRenderItemInfo} from "react-native";
 import {Todo} from "@domain";
 import {useAlert, useToast} from "@services";
 
-import {EmptyListMessage} from "./components/EmptyListMessage";
+import {EmptyTodoList} from "./components/EmptyTodoList";
 import {TodoItem} from "./components/TodoItem";
 
 interface Props {
@@ -41,9 +41,8 @@ export function TodoList({todos}: Props) {
         onCancel: () => console.log("Todo delete canceled"),
       },
       icon: {
-        name: "trash",
+        name: "trash-can",
         color: "danger",
-        iconStyle: "solid",
       },
     });
   }
@@ -67,7 +66,7 @@ export function TodoList({todos}: Props) {
       data={todos}
       keyExtractor={item => item.id}
       renderItem={renderItem}
-      ListEmptyComponent={<EmptyListMessage />}
+      ListEmptyComponent={<EmptyTodoList />}
       contentContainerStyle={
         todos.length === 0
           ? {flex: 1, justifyContent: "center", alignItems: "center"}

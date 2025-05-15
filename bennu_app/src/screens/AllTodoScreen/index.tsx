@@ -6,12 +6,12 @@ import {useAppSelector} from "@features";
 import {Container} from "./styles";
 
 export function AllTodoScreen() {
-  const todoData = useAppSelector(state => state.todo);
+  const {todos} = useAppSelector(state => state.todo);
 
   return (
     <Screen title="Todas Tarefas" headerRight={<AddNewTodoButton />}>
       <Container>
-        <TodoList todos={todoData.todos} />
+        <TodoList todos={todos} />
       </Container>
     </Screen>
   );

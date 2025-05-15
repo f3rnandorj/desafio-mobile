@@ -34,15 +34,13 @@ export function Toast() {
     success: {
       color: colors.success,
       icon: {
-        name: "circle-check",
-        iconStyle: "solid",
+        name: "check-circle",
       },
     },
     error: {
       color: colors.danger,
       icon: {
-        name: "circle-xmark",
-        iconStyle: "solid",
+        name: "alpha-x-circle",
       },
     },
   };
