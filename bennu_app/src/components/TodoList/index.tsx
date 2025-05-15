@@ -44,6 +44,11 @@ export function TodoList({todos}: Props) {
       keyExtractor={item => item.id}
       renderItem={renderItem}
       ListEmptyComponent={<EmptyListMessage />}
+      contentContainerStyle={
+        todos.length === 0
+          ? {flex: 1, justifyContent: "center", alignItems: "center"}
+          : {}
+      }
     />
   );
 }

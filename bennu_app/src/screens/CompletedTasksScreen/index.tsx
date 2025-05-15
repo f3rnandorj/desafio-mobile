@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 
-import {Screen, Text} from "@components";
+import {AddNewTodoButton, Screen, TodoList} from "@components";
+import {Todo} from "@domain";
 
 import {Container} from "./styles";
 
 export function CompletedTasksScreen() {
+  const [todos] = useState<Todo[]>([]);
+
   return (
-    <Screen title="Lista de Tarefas Concluídas">
+    <Screen title="Tarefas Concluídas" headerRight={<AddNewTodoButton />}>
       <Container>
-        <Text>Completed Tasks Screen</Text>
+        <TodoList todos={todos} />
       </Container>
     </Screen>
   );
