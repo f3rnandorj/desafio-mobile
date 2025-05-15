@@ -9,8 +9,8 @@ import {
   View,
 } from "react-native";
 
-
 import {Text} from "@components";
+import {GlobalServiceComponents} from "@context";
 import {useAppSafeArea, useKeyboardStatus} from "@hooks";
 import {useModal} from "@services";
 
@@ -72,6 +72,8 @@ export function BaseModal() {
           </ModalContainer>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
+
+      <GlobalServiceComponents isInsideModal />
     </Modal>
   );
 }

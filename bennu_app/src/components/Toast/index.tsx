@@ -15,7 +15,11 @@ export type ToastIconProps = {
   icon: IconProps;
 };
 
-export function Toast() {
+interface Props {
+  isInsideModal: boolean;
+}
+
+export function Toast({isInsideModal}: Props) {
   const {toast, hideToast} = useToast();
   const {colors} = useTheme();
 
@@ -65,7 +69,7 @@ export function Toast() {
     <Animated.View
       style={[
         {
-          [position]: 50,
+          [position]: isInsideModal ? 20 : 50,
           backgroundColor: mapToToast?.[type].color,
         },
         $wrapper,

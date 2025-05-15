@@ -30,9 +30,7 @@ export function TextInput({
       {label && <Label preset="label">{label}</Label>}
 
       <InputContainer {...shadows.md}>
-        {leftIcon && (
-          <Icon size={16} {...leftIcon} style={{marginRight: spacing.s8}} />
-        )}
+        {leftIcon && <Icon {...leftIcon} style={{marginRight: spacing.s8}} />}
 
         <Input
           placeholder="Add a new task..."
@@ -43,9 +41,7 @@ export function TextInput({
           {...textInputProps}
         />
 
-        {rightIcon && (
-          <Icon size={16} {...rightIcon} style={{marginLeft: spacing.s8}} />
-        )}
+        {rightIcon && <Icon {...rightIcon} style={{marginLeft: spacing.s8}} />}
       </InputContainer>
 
       {errorMessage && (

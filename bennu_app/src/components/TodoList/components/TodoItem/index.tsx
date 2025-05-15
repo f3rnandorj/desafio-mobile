@@ -39,13 +39,15 @@ export function TodoItem({
             onPress={() => onToggleStatus(id)}
             name="check-circle"
             color="success"
+            size={34}
             style={{marginRight: spacing.s8}}
           />
         ) : (
           <Icon
             onPress={() => onToggleStatus(id)}
-            name="circle"
+            name="circle-outline"
             color="gray400"
+            size={34}
             style={{marginRight: spacing.s8}}
           />
         )}
@@ -65,16 +67,10 @@ export function TodoItem({
           <Icon
             onPress={() => onEdit(id)}
             name="pen"
-            size={16}
             color="gray400"
             style={{paddingHorizontal: spacing.s16}}
           />
-          <Icon
-            onPress={() => onDelete(id)}
-            name="trash-can"
-            size={16}
-            color="danger"
-          />
+          <Icon onPress={() => onDelete(id)} name="trash-can" color="danger" />
         </TaskActions>
       </TaskCard>
     </TaskContainer>

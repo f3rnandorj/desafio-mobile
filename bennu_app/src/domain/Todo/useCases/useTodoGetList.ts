@@ -3,12 +3,17 @@ import {useEffect} from "react";
 import {todoService} from "@domain";
 import {setTodoList, setIsError, setIsLoading, useAppDispatch} from "@features";
 
-export function useTodoGetList() {
+interface Props {
+  enabled?: boolean;
+}
+
+export function useTodoGetList({enabled = false}: Props) {
   const dispatch = useAppDispatch();
 
   async function fetchTodos() {
     dispatch(setIsError(false));
-    setIsLoading(true);
+    dispatch(setIsLoading(true));
+
     try {
       const response = await todoService.getTodoList();
       dispatch(setTodoList(response));
@@ -20,7 +25,9 @@ export function useTodoGetList() {
   }
 
   useEffect(() => {
-    fetchTodos();
+    if (enabled) {
+      fetchTodos();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 

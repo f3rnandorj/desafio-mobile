@@ -3,43 +3,36 @@ import {concludedTodoService} from "@services";
 import {todoAdapter} from "./todoAdapter";
 import {todoApi} from "./todoApi";
 
-import {Todo, TodoApi} from ".";
+import {CreateTodoParams, Todo, TodoApiItem, UpdateTodoParams} from ".";
 
 async function getTodoList(): Promise<Todo[]> {
-  const response = await todoApi.getTodoList();
-  return response.length > 0
-    ? response.map(todo => mapTodoWithCompleted(todo))
-    : [];
+  const {tasks} = await todoApi.getTodoList();
+  return tasks.length > 0 ? tasks.map(todo => mapTodoWithCompleted(todo)) : [];
 }
 
 async function getTodoById(id: number): Promise<Todo> {
-  const response = await todoApi.getTodoById(id);
-  return mapTodoWithCompleted(response);
+  const {tasks} = await todoApi.getTodoById(id);
+  return mapTodoWithCompleted(tasks[0]);
 }
 
-async function updateTodo(
-  id: number,
-  updates: Pick<TodoApi, "title" | "description">,
-): Promise<Todo> {
-  const response = await todoApi.updateTodo(id, updates);
-  return mapTodoWithCompleted(response);
+async function updateTodo(params: UpdateTodoParams): Promise<Todo> {
+  const {tasks} = await todoApi.updateTodo(params);
+  return mapTodoWithCompleted(tasks[0]);
 }
 
-async function createTodo(
-  todo: Pick<TodoApi, "title" | "description">,
-): Promise<void> {
-  await todoApi.createTodo(todo);
+async function createTodo(params: CreateTodoParams): Promise<void> {
+  await todoApi.createTodo(params);
 }
 
 async function deleteTodo(id: number): Promise<void> {
   await todoApi.deleteTodo(id);
 }
 
-function mapTodoWithCompleted(data: TodoApi): Todo {
+function mapTodoWithCompleted(data: TodoApiItem): Todo {
   const base = todoAdapter.toTodo(data);
-  const {concludedTodoList} = concludedTodoService();
+  const todoList = concludedTodoService.getState().concludedTodoList;
 
-  const completed = concludedTodoList.some(
+  const completed = todoList.some(
     concludedTodo => concludedTodo.id === data.id,
   );
 

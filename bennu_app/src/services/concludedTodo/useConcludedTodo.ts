@@ -9,6 +9,7 @@ export const concludedTodoService = create<ConcludedTodoService>()(
   persist(
     (set, get) => ({
       concludedTodoList: [],
+
       addTodo: todo => {
         const todoList = get().concludedTodoList;
 
@@ -30,7 +31,7 @@ export const concludedTodoService = create<ConcludedTodoService>()(
       },
     }),
     {
-      name: "@TodoConcludedTodo",
+      name: "@ConcludedTodo",
       storage: storage,
     },
   ),

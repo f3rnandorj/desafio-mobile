@@ -6,7 +6,7 @@ import {EmptyState, EmptyStateText} from "./styles";
 
 export function EmptyTodoList() {
   const {isError, isLoading} = useAppSelector(state => state.todo);
-  const {fetchTodos} = useTodoGetList();
+  const {fetchTodos} = useTodoGetList({});
 
   if (isLoading) {
     return (

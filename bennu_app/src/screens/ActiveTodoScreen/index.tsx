@@ -7,11 +7,10 @@ import {useAppSelector} from "@features";
 import {Container} from "./styles";
 
 export function ActiveTodoScreen() {
-  useTodoGetList();
-
   const {todos} = useAppSelector(state => state.todo);
   const activeTodoList = todos.filter(todo => !todo.completed);
 
+  useTodoGetList({enabled: true});
   return (
     <Screen title="Tarefas Ativas" headerRight={<AddNewTodoButton />}>
       <Container>

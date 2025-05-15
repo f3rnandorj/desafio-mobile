@@ -5,7 +5,8 @@ import {useForm} from "react-hook-form";
 import {useTheme} from "styled-components/native";
 
 import {Button, FormTextInput, IconProps} from "@components";
-import {useModal} from "@services";
+import {useTodoCreate, useTodoGetList} from "@domain";
+import {useModal, useToast} from "@services";
 
 import {MutateTodoFormData, mutateTodoFormSchema} from "./mutateTodoFormSchema";
 import {ButtonsContainer, Container} from "./styles";
@@ -18,6 +19,19 @@ export function MutateTodoModal() {
 
   const {spacing} = useTheme();
   const {hideModal} = useModal();
+  const {showToast} = useToast();
+
+  const {fetchTodos} = useTodoGetList({});
+  const {createTodo} = useTodoCreate({
+    onSuccess: async () => {
+      await fetchTodos();
+      hideModal();
+      showToast({message: "Tarefa criada com sucesso"});
+    },
+    onError: () => {
+      showToast({message: "Erro ao criar tarefa", type: "error"});
+    },
+  });
 
   const title = watch("todo");
   const description = watch("todoDescription");
@@ -25,7 +39,7 @@ export function MutateTodoModal() {
   const titleRightIcon: IconProps | undefined =
     title && title.length > 0
       ? {
-          name: "alpha-x",
+          name: "close",
           color: "danger",
           onPress: () => setValue("todo", ""),
         }
@@ -34,14 +48,14 @@ export function MutateTodoModal() {
   const descriptionRightIcon: IconProps | undefined =
     description && description.length > 0
       ? {
-          name: "alpha-x",
+          name: "close",
           color: "danger",
           onPress: () => setValue("todoDescription", ""),
         }
       : undefined;
 
-  async function createTodo(data: MutateTodoFormData) {
-    console.log("createTodo", data);
+  async function handleCreateTodo(data: MutateTodoFormData) {
+    await createTodo({title: data.todo, description: data.todoDescription});
   }
 
   return (
@@ -72,7 +86,7 @@ export function MutateTodoModal() {
         />
 
         <Button
-          onPress={handleSubmit(createTodo)}
+          onPress={handleSubmit(handleCreateTodo)}
           title="Adicionar Tarefa"
           variant="primary"
           style={{marginLeft: spacing.s8, flex: 1}}

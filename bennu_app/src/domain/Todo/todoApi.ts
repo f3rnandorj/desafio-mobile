@@ -1,36 +1,28 @@
 import {api} from "@api";
 
-import {TodoApi} from ".";
+import {CreateTodoParams, TodoApi, UpdateTodoParams} from ".";
 
-async function getTodoList(): Promise<TodoApi[]> {
-  const response = await api.get<TodoApi[]>("/tasks");
+async function getTodoList(): Promise<TodoApi> {
+  const response = await api.get<TodoApi>("/tasks");
   return response.data;
 }
 
 async function getTodoById(id: number): Promise<TodoApi> {
-  const response = await api.get<TodoApi>(`/tasks/${id}`);
+  const response = await api.get<TodoApi>(`/task/${id}`);
   return response.data;
 }
 
-async function updateTodo(
-  id: number,
-  updates: Pick<TodoApi, "title" | "description">,
-): Promise<TodoApi> {
-  const response = await api.put<TodoApi>("/tasks/update", {
-    id,
-    ...updates,
-  });
+async function updateTodo(params: UpdateTodoParams): Promise<TodoApi> {
+  const response = await api.put<TodoApi>("/task/update", params);
   return response.data;
 }
 
-async function createTodo(
-  todo: Pick<TodoApi, "title" | "description">,
-): Promise<void> {
-  await api.post<void>("/tasks/create", todo);
+async function createTodo(params: CreateTodoParams): Promise<void> {
+  await api.post<void>("/task/create", params);
 }
 
 async function deleteTodo(id: number): Promise<void> {
-  await api.delete<void>("/tasks/delete", {
+  await api.delete<void>("/task/delete", {
     data: {id},
   });
 }
