@@ -1,6 +1,6 @@
 import {api} from "@api";
 
-import {CreateTodoParams, TodoApi, UpdateTodoParams} from ".";
+import {CreateTodoParams, TodoApi, TodoItemApi, UpdateTodoParams} from ".";
 
 async function getTodoList(): Promise<TodoApi> {
   const response = await api.get<TodoApi>("/tasks");
@@ -12,8 +12,8 @@ async function getTodoById(id: number): Promise<TodoApi> {
   return response.data;
 }
 
-async function updateTodo(params: UpdateTodoParams): Promise<TodoApi> {
-  const response = await api.put<TodoApi>("/task/update", params);
+async function updateTodo(params: UpdateTodoParams): Promise<TodoItemApi> {
+  const response = await api.put<TodoItemApi>("/task/update", params);
   return response.data;
 }
 

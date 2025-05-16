@@ -1,6 +1,6 @@
-import {Todo, TodoApiItem} from ".";
+import {Todo, TodoItemApi} from ".";
 
-function toTodo(todo: TodoApiItem): Omit<Todo, "completed"> {
+function toTodo(todo: TodoItemApi): Omit<Todo, "completed"> {
   return {
     id: todo.id,
     title: todo.title,

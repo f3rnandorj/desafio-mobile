@@ -1,10 +1,10 @@
 import {zodSchemas} from "@form";
 import {z} from "zod";
 
-const {todo, todoDescription} = zodSchemas;
+const {todoTitle, todoDescription} = zodSchemas;
 
 export const mutateTodoFormSchema = z.object({
-  todo,
+  todoTitle,
   todoDescription,
 });
 

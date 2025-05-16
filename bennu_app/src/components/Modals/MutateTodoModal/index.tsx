@@ -1,73 +1,34 @@
 import React from "react";
 
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useForm} from "react-hook-form";
 import {useTheme} from "styled-components/native";
 
-import {Button, FormTextInput, IconProps} from "@components";
-import {useTodoCreate, useTodoGetList} from "@domain";
+import {Button, FormTextInput} from "@components";
+import {Todo} from "@domain";
 import {useAppSelector} from "@features";
-import {useModal, useToast} from "@services";
+import {useModal} from "@services";
 
-import {MutateTodoFormData, mutateTodoFormSchema} from "./mutateTodoFormSchema";
 import {ButtonsContainer, Container} from "./styles";
+import {useMutateTodoForm} from "./useCases/useMutateTodoForm";
 
-export function MutateTodoModal() {
-  const {control, watch, setValue, handleSubmit} = useForm<MutateTodoFormData>({
-    resolver: zodResolver(mutateTodoFormSchema),
-    defaultValues: {},
-  });
+interface Props {
+  todo?: Todo;
+}
 
-  const {isLoading} = useAppSelector(state => state.todo);
+export function MutateTodoModal({todo}: Props) {
+  const {control, titleRightIcon, descriptionRightIcon, handleSubmitForm} =
+    useMutateTodoForm(todo);
 
   const {spacing} = useTheme();
   const {hideModal} = useModal();
-  const {showToast} = useToast();
-
-  const {fetchTodos} = useTodoGetList({});
-  const {createTodo} = useTodoCreate({
-    onSuccess: async () => {
-      await fetchTodos();
-      hideModal();
-      showToast({message: "Tarefa criada com sucesso"});
-    },
-    onError: () => {
-      showToast({message: "Erro ao criar tarefa", type: "error"});
-    },
-  });
-
-  const title = watch("todo");
-  const description = watch("todoDescription");
-
-  const titleRightIcon: IconProps | undefined =
-    title && title.length > 0
-      ? {
-          name: "close",
-          color: "danger",
-          onPress: () => setValue("todo", ""),
-        }
-      : undefined;
-
-  const descriptionRightIcon: IconProps | undefined =
-    description && description.length > 0
-      ? {
-          name: "close",
-          color: "danger",
-          onPress: () => setValue("todoDescription", ""),
-        }
-      : undefined;
-
-  async function handleCreateTodo(data: MutateTodoFormData) {
-    await createTodo({title: data.todo, description: data.todoDescription});
-  }
+  const isLoading = useAppSelector(state => state.todo.isLoading);
 
   return (
     <Container>
       <FormTextInput
-        name="todo"
+        name="todoTitle"
         control={control}
         label="Nome da tarefa*"
-        placeholder="Enter task title"
+        placeholder="Digite o nome da tarefa"
         rightIcon={titleRightIcon}
       />
 
@@ -76,7 +37,7 @@ export function MutateTodoModal() {
         control={control}
         variant="multiline"
         label="Descrição da tarefa"
-        placeholder="Enter task description"
+        placeholder="Digite a descrição da tarefa"
         rightIcon={descriptionRightIcon}
       />
 
@@ -89,8 +50,8 @@ export function MutateTodoModal() {
         />
 
         <Button
-          onPress={handleSubmit(handleCreateTodo)}
-          title="Adicionar Tarefa"
+          onPress={handleSubmitForm}
+          title={todo ? "Editar Tarefa" : "Adicionar Tarefa"}
           variant="primary"
           style={{marginLeft: spacing.s8, flex: 1}}
           isLoading={isLoading}

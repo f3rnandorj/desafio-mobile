@@ -8,7 +8,7 @@ export function AddNewTodoButton() {
     <Icon
       onPress={() =>
         showModal({
-          content: () => MutateTodoModal(),
+          content: () => MutateTodoModal({}),
           title: "Nova Tarefa",
         })
       }

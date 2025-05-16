@@ -5,13 +5,13 @@ export interface Todo {
   description?: string;
 }
 
-export interface TodoApiItem {
+export interface TodoItemApi {
   id: string;
   title: string;
   description?: string;
 }
 export interface TodoApi {
-  tasks: TodoApiItem[];
+  tasks: TodoItemApi[];
 }
 
 export interface CreateTodoParams {

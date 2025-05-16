@@ -3,7 +3,7 @@ import {concludedTodoService} from "@services";
 import {todoAdapter} from "./todoAdapter";
 import {todoApi} from "./todoApi";
 
-import {CreateTodoParams, Todo, TodoApiItem, UpdateTodoParams} from ".";
+import {CreateTodoParams, Todo, TodoItemApi, UpdateTodoParams} from ".";
 
 async function getTodoList(): Promise<Todo[]> {
   const {tasks} = await todoApi.getTodoList();
@@ -16,8 +16,8 @@ async function getTodoById(id: number): Promise<Todo> {
 }
 
 async function updateTodo(params: UpdateTodoParams): Promise<Todo> {
-  const {tasks} = await todoApi.updateTodo(params);
-  return mapTodoWithCompleted(tasks[0]);
+  const response = await todoApi.updateTodo(params);
+  return mapTodoWithCompleted(response);
 }
 
 async function createTodo(params: CreateTodoParams): Promise<void> {
@@ -28,7 +28,7 @@ async function deleteTodo(id: number): Promise<void> {
   await todoApi.deleteTodo(id);
 }
 
-function mapTodoWithCompleted(data: TodoApiItem): Todo {
+function mapTodoWithCompleted(data: TodoItemApi): Todo {
   const base = todoAdapter.toTodo(data);
   const todoList = concludedTodoService.getState().concludedTodoList;
 

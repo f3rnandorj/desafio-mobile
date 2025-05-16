@@ -1,6 +1,8 @@
 import {useTheme} from "styled-components/native";
 
-import {Icon} from "@components";
+import {Icon, MutateTodoModal} from "@components";
+import {Todo} from "@domain";
+import {useAlert, useModal, useToast} from "@services";
 
 import {
   TaskCard,
@@ -11,32 +13,54 @@ import {
 } from "../../styles";
 
 type TodoItemProps = {
-  id: string;
-  title: string;
-  completed: boolean;
-  description?: string;
-  onToggleStatus: (id: string) => void;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
+  todo: Todo;
 };
 
-export function TodoItem({
-  id,
-  title,
-  completed,
-  description,
-  onToggleStatus,
-  onEdit,
-  onDelete,
-}: TodoItemProps) {
+export function TodoItem({todo}: TodoItemProps) {
   const {shadows, spacing} = useTheme();
+
+  const {completed, id, title, description} = todo;
+
+  const {showAlert} = useAlert();
+  const {showToast} = useToast();
+  const {showModal} = useModal();
+
+  function handleToggleStatus() {
+    // TODO:
+    console.log("Toggle status for todo:", id);
+  }
+
+  function handleEdit() {
+    showModal({
+      content: () => MutateTodoModal({todo}),
+      title: "Editar tarefa",
+    });
+  }
+
+  function handleDelete() {
+    // TODO:
+    console.log("Delete todo:", id);
+
+    showAlert({
+      title: "Deletar tarefa",
+      subTitle: "Você tem certeza que deseja deletar essa tarefa?",
+      action: {
+        onConfirm: () => console.log("Todo deleted:", id),
+        onCancel: () => console.log("Todo delete canceled"),
+      },
+      icon: {
+        name: "trash-can",
+        color: "danger",
+      },
+    });
+  }
 
   return (
     <TaskContainer>
       <TaskCard {...shadows.md}>
         {completed ? (
           <Icon
-            onPress={() => onToggleStatus(id)}
+            onPress={handleToggleStatus}
             name="check-circle"
             color="success"
             size={34}
@@ -44,7 +68,7 @@ export function TodoItem({
           />
         ) : (
           <Icon
-            onPress={() => onToggleStatus(id)}
+            onPress={handleToggleStatus}
             name="circle-outline"
             color="gray400"
             size={34}
@@ -65,13 +89,13 @@ export function TodoItem({
 
         <TaskActions>
           <Icon
-            onPress={() => onEdit(id)}
+            onPress={handleEdit}
             name="pen"
             color="gray400"
             style={{paddingHorizontal: spacing.s16}}
           />
 
-          <Icon onPress={() => onDelete(id)} name="trash-can" color="danger" />
+          <Icon onPress={handleDelete} name="trash-can" color="danger" />
         </TaskActions>
       </TaskCard>
     </TaskContainer>
