@@ -30,7 +30,11 @@
     },
     {
       "id": 7,
-      "title": "Add pull to refresh"
+      "title": "Add app icon"
+    },
+    {
+      "id": 8,
+      "title": "Add font"
     }
   ]
 }

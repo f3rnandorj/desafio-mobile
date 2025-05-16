@@ -34,7 +34,7 @@ export function Button({
       {isLoading ? (
         <Loading size="small" color={color} />
       ) : (
-        <Text bold color={color}>
+        <Text bold preset="label" color={color}>
           {title}
         </Text>
       )}
