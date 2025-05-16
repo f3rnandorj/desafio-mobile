@@ -1,16 +1,17 @@
 import {MutationOptions} from "@api";
 
-import {CreateTodoParams, todoService} from "@domain";
 import {setIsLoading, useAppDispatch} from "@features";
 
-export function useTodoCreate(options?: MutationOptions<void>) {
+import {todoService} from "..";
+
+export function useTodoDelete(options?: MutationOptions<void>) {
   const dispatch = useAppDispatch();
 
-  async function createTodo(todo: CreateTodoParams) {
+  async function deleteTodo(todoId: number) {
     dispatch(setIsLoading(true));
 
     try {
-      await todoService.createTodo(todo);
+      await todoService.deleteTodo(todoId);
 
       if (options?.onSuccess) {
         options.onSuccess();
@@ -25,6 +26,6 @@ export function useTodoCreate(options?: MutationOptions<void>) {
   }
 
   return {
-    createTodo,
+    deleteTodo,
   };
 }

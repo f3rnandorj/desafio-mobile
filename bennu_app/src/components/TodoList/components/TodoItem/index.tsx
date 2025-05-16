@@ -38,9 +38,6 @@ export function TodoItem({todo}: TodoItemProps) {
   }
 
   function handleDelete() {
-    // TODO:
-    console.log("Delete todo:", id);
-
     showAlert({
       title: "Deletar tarefa",
       subTitle: "Você tem certeza que deseja deletar essa tarefa?",
