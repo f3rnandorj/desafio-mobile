@@ -5,7 +5,7 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: 0 ${({theme}) => theme.spacing.s24}px;
-  margin-bottom: ${({theme}) => theme.spacing.s24}px;
+  margin-bottom: ${({theme}) => theme.spacing.s16}px;
 `;
 
 export const HeaderButton = styled.TouchableOpacity`

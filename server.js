@@ -102,8 +102,13 @@ app.put("/task/update", (req, res) => {
  */
 app.post("/task/create", (req, res) => {
   const tasksContainer = loadTasksFromFile();
+
+  const maxId = tasksContainer.tasks.reduce((max, task) => {
+    return task.id > max ? task.id : max;
+  }, 0);
+
   const task = {
-    id: tasksContainer.tasks.length,
+    id: maxId + 1,
     title: req.body.title,
     description: req.body.description,
   };

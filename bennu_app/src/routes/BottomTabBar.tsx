@@ -4,6 +4,8 @@ import {Platform, Text, TouchableOpacity, View} from "react-native";
 import {BottomTabBarProps} from "@react-navigation/bottom-tabs";
 import {useTheme} from "styled-components/native";
 
+import {useAppSafeArea} from "@hooks";
+
 import {BottomTabParamList} from "./BottomTabNavigator";
 import {mapScreenToProps} from "./mapScreenToProps";
 
@@ -13,6 +15,7 @@ export function BottomTabBar({
   navigation,
 }: BottomTabBarProps) {
   const theme = useTheme();
+  const {bottom} = useAppSafeArea();
 
   return (
     <View
@@ -20,7 +23,7 @@ export function BottomTabBar({
         backgroundColor: theme.colors.background,
         flexDirection: "row",
         paddingHorizontal: theme.spacing.s24,
-        paddingBottom: theme.spacing.s16,
+        paddingBottom: bottom,
         gap: theme.spacing.s8,
       }}>
       {state.routes.map((route, index) => {

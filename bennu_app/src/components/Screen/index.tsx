@@ -1,6 +1,8 @@
 import React from "react";
 import {KeyboardAvoidingView, Platform, ViewStyle} from "react-native";
 
+import {useTheme} from "styled-components/native";
+
 import {useAppSafeArea} from "@hooks";
 
 import {Icon} from "../Icon";
@@ -30,7 +32,8 @@ export function Screen({
   headerRight,
   onBackPress,
 }: ScreenProps) {
-  const {top, bottom} = useAppSafeArea();
+  const {spacing} = useTheme();
+  const {top} = useAppSafeArea();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
@@ -39,7 +42,7 @@ export function Screen({
       style={{flex: 1}}
       behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <Container
-        style={{paddingTop: top, paddingBottom: bottom, width: "100%"}}>
+        style={{paddingTop: top, paddingBottom: spacing.s8, width: "100%"}}>
         {showHeader && (
           <Header>
             {showBackButton && (
