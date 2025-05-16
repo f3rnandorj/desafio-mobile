@@ -5,7 +5,7 @@ import {useAppSelector} from "@features";
 import {EmptyState, EmptyStateText} from "./styles";
 
 export function EmptyTodoList() {
-  const {isError, isLoading} = useAppSelector(state => state.todo);
+  const {isGetListError, isLoading} = useAppSelector(state => state.todo);
   const {fetchTodos} = useTodoGetList({});
 
   if (isLoading) {
@@ -20,7 +20,7 @@ export function EmptyTodoList() {
     );
   }
 
-  if (isError) {
+  if (isGetListError) {
     return (
       <EmptyState>
         <Icon name="wifi-off" size={48} color="danger" />

@@ -17,7 +17,7 @@ export function TodoList({todos}: Props) {
   return (
     <FlatList
       data={todos}
-      keyExtractor={item => item.id}
+      keyExtractor={item => String(item.id)}
       renderItem={renderItem}
       ListEmptyComponent={<EmptyTodoList />}
       contentContainerStyle={
