@@ -1,7 +1,7 @@
 import {useTheme} from "styled-components/native";
 
 import {Icon, MutateTodoModal} from "@components";
-import {Todo} from "@domain";
+import {Todo, useTodoDelete, useTodoGetList} from "@domain";
 import {useAlert, useModal, useToast} from "@services";
 
 import {
@@ -21,9 +21,21 @@ export function TodoItem({todo}: TodoItemProps) {
 
   const {completed, id, title, description} = todo;
 
-  const {showAlert} = useAlert();
+  const {showAlert, hideAlert} = useAlert();
   const {showToast} = useToast();
   const {showModal} = useModal();
+
+  const {fetchTodos} = useTodoGetList({});
+  const {deleteTodo} = useTodoDelete({
+    onSuccess: async () => {
+      await fetchTodos();
+      hideAlert();
+      showToast({message: "Tarefa deletada com sucesso"});
+    },
+    onError: () => {
+      showToast({message: "Erro ao deletar tarefa", type: "error"});
+    },
+  });
 
   function handleToggleStatus() {
     // TODO:
@@ -42,8 +54,7 @@ export function TodoItem({todo}: TodoItemProps) {
       title: "Deletar tarefa",
       subTitle: "Você tem certeza que deseja deletar essa tarefa?",
       action: {
-        onConfirm: () => console.log("Todo deleted:", id),
-        onCancel: () => console.log("Todo delete canceled"),
+        onConfirm: async () => await deleteTodo(todo.id),
       },
       icon: {
         name: "trash-can",

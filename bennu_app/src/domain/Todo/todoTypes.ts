@@ -1,12 +1,12 @@
 export interface Todo {
-  id: string;
+  id: number;
   title: string;
   completed: boolean;
   description?: string;
 }
 
 export interface TodoItemApi {
-  id: string;
+  id: number;
   title: string;
   description?: string;
 }
@@ -20,7 +20,7 @@ export interface CreateTodoParams {
 }
 
 export interface UpdateTodoParams {
-  id: string;
+  id: number;
   title: string;
   description?: string;
 }

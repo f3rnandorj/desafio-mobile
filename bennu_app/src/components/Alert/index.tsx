@@ -25,12 +25,10 @@ export function Alert() {
 
   const onConfirm = () => {
     alert?.action.onConfirm();
-
-    hideAlert();
   };
 
   const onCancel = () => {
-    if (alert?.action.onCancel) {
+    if (alert?.action?.onCancel) {
       alert?.action.onCancel();
       hideAlert();
     } else {
