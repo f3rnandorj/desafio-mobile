@@ -1,31 +1,20 @@
 import {MMKV} from "react-native-mmkv";
 
-import {Storage} from "../storage";
+import {Storage} from "../storageTypes";
 
 const MMKVInstance = new MMKV();
 
 export const MMKVStorage: Storage = {
-  getItem: key => {
-    const item = MMKVInstance.getString(key);
-    if (item) {
-      return JSON.parse(item);
-    }
-    return null;
-  },
-  setItem: async (key, value) => {
-    MMKVInstance.set(key, JSON.stringify(value));
-  },
-  removeItem: async key => MMKVInstance.delete(key),
-};
-
-export const zustandMMKVStorage = {
-  getItem: (key: string): string | null => {
-    return MMKVInstance.getString(key) ?? null;
-  },
-  setItem: (key: string, value: string): void => {
+  setItem: (key, value) => {
     MMKVInstance.set(key, value);
+    return Promise.resolve(true);
   },
-  removeItem: (key: string): void => {
+  getItem: key => {
+    const value = MMKVInstance.getString(key);
+    return Promise.resolve(value);
+  },
+  removeItem: key => {
     MMKVInstance.delete(key);
+    return Promise.resolve();
   },
 };

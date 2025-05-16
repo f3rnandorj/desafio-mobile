@@ -66,7 +66,6 @@ export function BottomTabBar({
               justifyContent: "center",
               alignItems: "center",
               paddingVertical: theme.spacing.s8,
-              paddingHorizontal: theme.spacing.s16,
               borderRadius: theme.borderRadius.md,
               backgroundColor: isFocused
                 ? theme.colors.primary

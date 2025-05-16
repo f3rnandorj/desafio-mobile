@@ -1,3 +1,2 @@
-export * from "./storage";
+export * from "./storageTypes";
 export * from "./implementation/MMKVStorage";
-export * from "./implementation/asyncStorage";

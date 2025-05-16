@@ -3,12 +3,12 @@ import {useTheme} from "styled-components/native";
 import {Icon, MutateTodoModal} from "@components";
 import {Todo, useTodoDelete, useTodoGetList} from "@domain";
 import {
-  useAlert,
-  useConcludedTodo,
-  useConcludedTodoService,
-  useModal,
-  useToast,
-} from "@services";
+  addCompletedTodo,
+  removeCompletedTodo,
+  useAppDispatch,
+  useAppSelector,
+} from "@features";
+import {useAlert, useModal, useToast} from "@services";
 
 import {
   TaskCard,
@@ -31,8 +31,9 @@ export function TodoItem({todo}: TodoItemProps) {
   const {showToast} = useToast();
   const {showModal} = useModal();
 
-  const concludedTodoList = useConcludedTodo();
-  const {addTodo, removeTodo} = useConcludedTodoService();
+  const dispatch = useAppDispatch();
+  const {concludedTodos} = useAppSelector(state => state.concludedTodo);
+
   const {fetchTodos} = useTodoGetList({});
   const {deleteTodo} = useTodoDelete({
     onSuccess: async () => {
@@ -46,15 +47,15 @@ export function TodoItem({todo}: TodoItemProps) {
   });
 
   async function handleToggleStatus() {
-    const isCompleted = concludedTodoList.some(
+    const isCompleted = concludedTodos.some(
       concludedTodo => concludedTodo.id === id,
     );
 
     if (isCompleted) {
-      removeTodo(id);
+      dispatch(removeCompletedTodo(id));
       showToast({message: "Tarefa marcada como não concluída"});
     } else {
-      addTodo(todo);
+      dispatch(addCompletedTodo(todo));
       showToast({message: "Tarefa marcada como concluída"});
     }
 

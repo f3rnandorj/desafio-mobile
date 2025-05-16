@@ -1,4 +1,4 @@
-import {concludedTodoService} from "@services";
+import {store} from "@features";
 
 import {todoAdapter} from "./todoAdapter";
 import {todoApi} from "./todoApi";
@@ -30,9 +30,9 @@ async function deleteTodo(id: number): Promise<void> {
 
 function mapTodoWithCompleted(data: TodoItemApi): Todo {
   const base = todoAdapter.toTodo(data);
-  const todoList = concludedTodoService.getState().concludedTodoList;
+  const concludedTodos = store.getState().concludedTodo.concludedTodos;
 
-  const completed = todoList.some(
+  const completed = concludedTodos.some(
     concludedTodo => concludedTodo.id === data.id,
   );
 
