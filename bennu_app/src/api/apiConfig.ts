@@ -1,3 +1,4 @@
+import {IP_ADDRESS} from "@env";
 import axios from "axios";
 
 export interface MutationOptions<TData> {
@@ -6,7 +7,9 @@ export interface MutationOptions<TData> {
   errorMessage?: string;
 }
 
-export const BASE_URL = "http://192.168.1.65:9001";
+// Base URL for the API
+// Set to the local machine's IP address to avoid issues when running on emulators or simulators
+export const BASE_URL = `http://${IP_ADDRESS}:9001`;
 export const api = axios.create({
   baseURL: BASE_URL,
 });
