@@ -1,20 +1,21 @@
 import {MutationOptions} from "@api";
 
-import {CreateTodoParams, todoService} from "@domain";
 import {setIsError, setIsLoading, useAppDispatch} from "@features";
 
-export function useTodoCreate(options?: MutationOptions<void>) {
+import {Todo, UpdateTodoParams, todoService} from "..";
+
+export function useTodoUpdate(options?: MutationOptions<Todo>) {
   const dispatch = useAppDispatch();
 
-  async function createTodo(todo: CreateTodoParams) {
+  async function updateTodo(todo: UpdateTodoParams) {
     dispatch(setIsError(false));
     dispatch(setIsLoading(true));
 
     try {
-      await todoService.createTodo(todo);
+      const updatedTodo = await todoService.updateTodo(todo);
 
       if (options?.onSuccess) {
-        options.onSuccess();
+        options.onSuccess(updatedTodo);
       }
     } catch (err: any) {
       dispatch(setIsError(true));
@@ -28,6 +29,6 @@ export function useTodoCreate(options?: MutationOptions<void>) {
   }
 
   return {
-    createTodo,
+    updateTodo,
   };
 }

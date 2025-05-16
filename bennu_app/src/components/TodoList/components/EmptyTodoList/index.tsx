@@ -14,7 +14,7 @@ export function EmptyTodoList() {
         <Loading />
 
         <EmptyStateText preset="heading3" color="gray500">
-          Loading tasks...
+          Carregando todos...
         </EmptyStateText>
       </EmptyState>
     );
@@ -26,7 +26,7 @@ export function EmptyTodoList() {
         <Icon name="wifi-off" size={48} color="danger" />
 
         <EmptyStateText preset="heading3" color="danger">
-          Failed to load tasks. Please try again later.
+          Falha ao carregar tarefas. Tente novamente mais tarde.
         </EmptyStateText>
 
         <Button
@@ -43,7 +43,7 @@ export function EmptyTodoList() {
       <Icon name="clipboard-list" size={48} color="gray500" />
 
       <EmptyStateText preset="heading3" color="gray500">
-        No tasks yet! Add your first task above.
+        Você ainda não tem nenhuma tarefa aqui 😞
       </EmptyStateText>
     </EmptyState>
   );

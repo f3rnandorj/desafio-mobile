@@ -70,6 +70,7 @@ export function TodoItem({
             color="gray400"
             style={{paddingHorizontal: spacing.s16}}
           />
+
           <Icon onPress={() => onDelete(id)} name="trash-can" color="danger" />
         </TaskActions>
       </TaskCard>

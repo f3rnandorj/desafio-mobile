@@ -7,7 +7,7 @@ import {Container} from "./styles";
 
 export function CompletedTodoScreen() {
   const {todos} = useAppSelector(state => state.todo);
-  const completedTodoList = todos.filter(todo => !todo.completed);
+  const completedTodoList = todos.filter(todo => todo.completed);
 
   return (
     <Screen title="Tarefas Concluídas" headerRight={<AddNewTodoButton />}>

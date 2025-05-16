@@ -67,7 +67,7 @@ export function BottomTabBar({
               borderRadius: theme.borderRadius.md,
               backgroundColor: isFocused
                 ? theme.colors.primary
-                : theme.colors.gray100,
+                : theme.colors.gray200,
             }}>
             <Text
               style={{
