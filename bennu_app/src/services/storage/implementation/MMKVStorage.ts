@@ -17,3 +17,15 @@ export const MMKVStorage: Storage = {
   },
   removeItem: async key => MMKVInstance.delete(key),
 };
+
+export const zustandMMKVStorage = {
+  getItem: (key: string): string | null => {
+    return MMKVInstance.getString(key) ?? null;
+  },
+  setItem: (key: string, value: string): void => {
+    MMKVInstance.set(key, value);
+  },
+  removeItem: (key: string): void => {
+    MMKVInstance.delete(key);
+  },
+};

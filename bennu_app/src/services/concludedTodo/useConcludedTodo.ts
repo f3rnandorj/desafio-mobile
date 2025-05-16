@@ -1,7 +1,7 @@
 import {create} from "zustand";
-import {persist} from "zustand/middleware";
+import {createJSONStorage, persist} from "zustand/middleware";
 
-import {storage} from "../storage";
+import {zustandMMKVStorage} from "../storage";
 
 import {ConcludedTodoService} from "./concludedTodoTypes";
 
@@ -32,7 +32,7 @@ export const concludedTodoService = create<ConcludedTodoService>()(
     }),
     {
       name: "@ConcludedTodo",
-      storage: storage,
+      storage: createJSONStorage(() => zustandMMKVStorage),
     },
   ),
 );

@@ -1,12 +1,37 @@
 {
   "tasks": [
     {
-      "id": 15,
-      "title": "Bhgfthg"
+      "id": 0,
+      "title": "Finish useCases",
+      "description": "- Create\n- List\n- Edit\n- Delete\n- Complete tasks"
     },
     {
-      "id": 16,
-      "title": "Bhgfthg"
+      "id": 1,
+      "title": "Adjust IOS build",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "title": "Adjust base Url ",
+      "description": "Apply logic to show android and IOS.\nWill it necessary to use .env?"
+    },
+    {
+      "id": 3,
+      "title": "Create tests"
+    },
+    {
+      "id": 4,
+      "title": "CI CD",
+      "description": "Validate if will implement CI CD"
+    },
+    {
+      "id": 5,
+      "title": "Create Readme ",
+      "description": "Verify notes"
+    },
+    {
+      "id": 6,
+      "title": "Check app before delivery"
     }
   ]
 }

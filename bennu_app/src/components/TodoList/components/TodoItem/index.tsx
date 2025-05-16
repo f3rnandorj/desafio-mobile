@@ -2,7 +2,13 @@ import {useTheme} from "styled-components/native";
 
 import {Icon, MutateTodoModal} from "@components";
 import {Todo, useTodoDelete, useTodoGetList} from "@domain";
-import {useAlert, useModal, useToast} from "@services";
+import {
+  useAlert,
+  useConcludedTodo,
+  useConcludedTodoService,
+  useModal,
+  useToast,
+} from "@services";
 
 import {
   TaskCard,
@@ -25,6 +31,8 @@ export function TodoItem({todo}: TodoItemProps) {
   const {showToast} = useToast();
   const {showModal} = useModal();
 
+  const concludedTodoList = useConcludedTodo();
+  const {addTodo, removeTodo} = useConcludedTodoService();
   const {fetchTodos} = useTodoGetList({});
   const {deleteTodo} = useTodoDelete({
     onSuccess: async () => {
@@ -37,9 +45,20 @@ export function TodoItem({todo}: TodoItemProps) {
     },
   });
 
-  function handleToggleStatus() {
-    // TODO:
-    console.log("Toggle status for todo:", id);
+  async function handleToggleStatus() {
+    const isCompleted = concludedTodoList.some(
+      concludedTodo => concludedTodo.id === id,
+    );
+
+    if (isCompleted) {
+      removeTodo(id);
+      showToast({message: "Tarefa marcada como não concluída"});
+    } else {
+      addTodo(todo);
+      showToast({message: "Tarefa marcada como concluída"});
+    }
+
+    await fetchTodos();
   }
 
   function handleEdit() {
