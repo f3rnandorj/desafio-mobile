@@ -21,13 +21,19 @@ export function Icon({
   if (onPress) {
     return (
       <TouchableOpacity onPress={onPress} style={style} hitSlop={10}>
-        <IconComponent size={size} color={colors[color]} {...iconProps} />
+        <IconComponent
+          testID={`icon-${iconProps.name}`}
+          size={size}
+          color={colors[color]}
+          {...iconProps}
+        />
       </TouchableOpacity>
     );
   }
 
   return (
     <IconComponent
+      testID={`icon-${iconProps.name}`}
       size={size}
       color={colors[color]}
       style={style}

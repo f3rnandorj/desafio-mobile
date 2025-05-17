@@ -33,6 +33,7 @@ export function TextInput({
         {leftIcon && <Icon {...leftIcon} style={{marginRight: spacing.s8}} />}
 
         <Input
+          testID="text-input"
           placeholder="Add a new task..."
           placeholderTextColor={colors.gray400}
           multiline={variant === "multiline"}
