@@ -3,7 +3,6 @@ import {persistReducer, persistStore} from "redux-persist";
 
 import {MMKVStorage} from "@services";
 
-import concludedTodoReducer from "./concludedTodo/concludedTodoSlice";
 import todoReducer from "./todo/todoSlice";
 
 const persistConfig = {
@@ -13,7 +12,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   todo: todoReducer,
-  concludedTodo: concludedTodoReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

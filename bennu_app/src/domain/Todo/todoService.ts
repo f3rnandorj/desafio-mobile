@@ -30,7 +30,7 @@ async function deleteTodo(id: number): Promise<void> {
 
 function mapTodoWithCompleted(data: TodoItemApi): Todo {
   const base = todoAdapter.toTodo(data);
-  const concludedTodos = store.getState().concludedTodo.concludedTodos;
+  const concludedTodos = store.getState().todo.concludedTodos;
 
   const completed = concludedTodos.some(
     concludedTodo => concludedTodo.id === data.id,

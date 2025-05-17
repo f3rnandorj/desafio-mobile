@@ -5,12 +5,14 @@ import {Todo} from "@domain";
 
 interface TodoState {
   todos: Todo[];
+  concludedTodos: Todo[];
   isLoading: boolean;
   isGetListError: boolean;
 }
 
 const initialState: TodoState = {
   todos: [],
+  concludedTodos: [],
   isLoading: false,
   isGetListError: false,
 };
@@ -42,6 +44,14 @@ const todoSlice = createSlice({
     setIsGetTodoListError(state, action: PayloadAction<boolean>) {
       state.isGetListError = action.payload;
     },
+    addCompletedTodo(state, action: PayloadAction<Todo>) {
+      state.concludedTodos.push(action.payload);
+    },
+    removeCompletedTodo(state, action: PayloadAction<number>) {
+      state.concludedTodos = state.concludedTodos.filter(
+        todoId => todoId.id !== action.payload,
+      );
+    },
   },
 });
 
@@ -52,6 +62,8 @@ export const {
   updateTodo,
   setIsLoading,
   setIsGetTodoListError,
+  addCompletedTodo,
+  removeCompletedTodo,
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

@@ -32,7 +32,7 @@ export function TodoItem({todo}: TodoItemProps) {
   const {showModal} = useModal();
 
   const dispatch = useAppDispatch();
-  const {concludedTodos} = useAppSelector(state => state.concludedTodo);
+  const {concludedTodos} = useAppSelector(state => state.todo);
 
   const {fetchTodos} = useTodoGetList({});
   const {deleteTodo} = useTodoDelete({
