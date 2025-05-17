@@ -5,11 +5,11 @@ import {SafeAreaProvider} from "react-native-safe-area-context";
 import {ThemeProvider} from "styled-components/native";
 
 import {ContextProviders, GlobalServiceComponents} from "@context";
+import {ReduxProvider} from "@features";
 import {Routes} from "@routes";
 import {theme} from "@theme";
 
 import {BaseModal} from "./src/components/Modals/BaseModal";
-import {ReduxProvider} from "./src/features/provider";
 
 function App(): React.JSX.Element {
   return (

@@ -6,7 +6,7 @@ import {StyledButton} from "./styles";
 
 export type ButtonVariants = "primary" | "outline";
 
-interface ButtonProps extends TouchableOpacityProps {
+export interface ButtonProps extends TouchableOpacityProps {
   variant?: ButtonVariants;
   title: string;
   isLoading?: boolean;
@@ -30,6 +30,7 @@ export function Button({
       variant={variant}
       disabled={disabled || isLoading}
       isDisabled={disabled}
+      testID="button"
       {...buttonProps}>
       {isLoading ? (
         <Loading size="small" color={color} />

@@ -21,10 +21,12 @@ export function Loading({
   if (fullScreen) {
     return (
       <Overlay>
-        <ActivityIndicator size={size} color={colors[color]} />
+        <ActivityIndicator testID="loading" size={size} color={colors[color]} />
       </Overlay>
     );
   }
 
-  return <ActivityIndicator size={size} color={colors[color]} />;
+  return (
+    <ActivityIndicator testID="loading" size={size} color={colors[color]} />
+  );
 }

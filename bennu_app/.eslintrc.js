@@ -11,6 +11,7 @@ module.exports = {
   plugins: ["import"],
   overrides: [
     {
+      extends: ["plugin:testing-library/react"],
       files: ["*.ts", "*.tsx"],
       rules: {
         "import/order": [
