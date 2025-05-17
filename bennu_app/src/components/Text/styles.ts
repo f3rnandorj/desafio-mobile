@@ -1,57 +1,53 @@
-import styled, {DefaultTheme} from "styled-components/native";
+import {TextStyle} from "react-native";
+
+import styled from "styled-components/native";
 
 import {TextPresetNames, TextProps} from ".";
 
-interface TextPreset {
-  fontSize: keyof DefaultTheme["fontSizes"];
-  fontWeight: keyof DefaultTheme["fontWeights"];
-}
-
-export const presets: Record<TextPresetNames, TextPreset> = {
-  heading1: {
-    fontSize: "xxl",
-    fontWeight: "bold",
-  },
-  heading2: {
-    fontSize: "xl",
-    fontWeight: "bold",
-  },
-  heading3: {
-    fontSize: "lg",
-    fontWeight: "bold",
-  },
-  paragraph: {
-    fontSize: "md",
-    fontWeight: "regular",
-  },
-  label: {
-    fontSize: "sm",
-    fontWeight: "medium",
-  },
-  caption: {
-    fontSize: "xs",
-    fontWeight: "regular",
-  },
+export const $fontSizes: Record<TextPresetNames, TextStyle> = {
+  heading1: {fontSize: 24, fontFamily: "Exile-Bold"},
+  heading2: {fontSize: 20},
+  heading3: {fontSize: 18},
+  paragraph: {fontSize: 16},
+  label: {fontSize: 14},
+  caption: {fontSize: 12},
 };
 
 export const StyledText = styled.Text<TextProps>`
+  ${({preset = "paragraph", theme}) => {
+    const fontSize = $fontSizes[preset]?.fontSize ?? theme.fontSizes.md;
+    return `
+      font-size: ${fontSize}px;
+    `;
+  }}
+
   color: ${({theme, color}) =>
     color ? theme.colors[color] : theme.colors.backgroundContrast};
 
-  font-size: ${({theme, preset = "paragraph"}) =>
-    theme.fontSizes[presets[preset].fontSize]}px;
-
-  font-weight: ${({theme, preset = "paragraph", bold, semiBold}) => {
+  font-family: ${({theme, bold, semiBold, italic, preset, medium}) => {
+    if (
+      preset === "heading1" ||
+      preset === "heading2" ||
+      preset === "heading3"
+    ) {
+      return italic ? theme.fontFamily.boldItalic : theme.fontFamily.bold;
+    }
+    if (bold && italic) {
+      return theme.fontFamily.boldItalic;
+    }
+    if (semiBold && italic) {
+      return theme.fontFamily.semiBoldItalic;
+    }
     if (bold) {
-      return theme.fontWeights.bold;
+      return theme.fontFamily.bold;
     }
-
     if (semiBold) {
-      return theme.fontWeights.medium;
+      return theme.fontFamily.semiBold;
     }
-
-    const fontWeightKey = presets[preset].fontWeight;
-    return theme.fontWeights[fontWeightKey];
+    if (medium) {
+      return theme.fontFamily.medium;
+    }
+    return theme.fontFamily.regular;
   }};
 
   font-style: ${({italic}) => (italic ? "italic" : "normal")};

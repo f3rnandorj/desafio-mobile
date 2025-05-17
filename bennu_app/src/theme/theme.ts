@@ -40,10 +40,13 @@ export const theme: DefaultTheme = {
     xl: 20,
     xxl: 24,
   },
-  fontWeights: {
-    regular: "400",
-    medium: "500",
-    bold: "700",
+  fontFamily: {
+    regular: "Rubik-Regular",
+    medium: "Rubik-Medium",
+    semiBold: "Rubik-SemiBold",
+    bold: "Rubik-Bold",
+    boldItalic: "Rubik-BoldItalic",
+    semiBoldItalic: "Rubik-SemiBoldItalic",
   },
   borderRadius: {
     sm: 4,

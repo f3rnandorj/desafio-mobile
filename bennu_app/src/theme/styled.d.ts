@@ -41,10 +41,13 @@ declare module "styled-components/native" {
       xl: number;
       xxl: number;
     };
-    fontWeights: {
+    fontFamily: {
       regular: string;
       medium: string;
+      semiBold: string;
       bold: string;
+      boldItalic: string;
+      semiBoldItalic: string;
     };
     borderRadius: {
       sm: number;

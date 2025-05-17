@@ -16,8 +16,9 @@ export type TextPresetNames =
 export interface TextProps extends RNTextProps {
   preset?: TextPresetNames;
   bold?: boolean;
-  italic?: boolean;
   semiBold?: boolean;
+  italic?: boolean;
+  medium?: boolean;
   color?: keyof DefaultTheme["colors"];
   align?: "auto" | "left" | "right" | "center" | "justify";
 }
@@ -26,8 +27,9 @@ export function Text({
   children,
   preset = "paragraph",
   bold,
-  italic,
   semiBold,
+  italic,
+  medium,
   color,
   align,
   style,
@@ -37,8 +39,9 @@ export function Text({
     <StyledText
       preset={preset}
       bold={bold}
-      italic={italic}
       semiBold={semiBold}
+      italic={italic}
+      medium={medium}
       color={color}
       align={align}
       style={style}
