@@ -1,0 +1,3 @@
+cd bennu_app
+
+npm test
