@@ -8,19 +8,16 @@ import {
   RenderHookOptions,
 } from "@testing-library/react-native";
 import {Provider} from "react-redux";
-import {persistStore} from "redux-persist";
-import {PersistPartial} from "redux-persist/es/persistReducer";
-import {PersistGate} from "redux-persist/integration/react";
 import {ThemeProvider} from "styled-components/native";
 
 import {ContextProviders, GlobalServiceComponents} from "@context";
-import {AppStore, PersistedRootState, RootState, setupStore} from "@features";
+import {TestRootState, TestAppStore, setupTestStore} from "@test";
 import {theme} from "@theme";
 
-interface ExtendedRenderOptions
+export interface ExtendedRenderOptions
   extends Omit<RenderOptions, "queries" | "wrapper"> {
-  preloadedState?: Partial<RootState> & PersistPartial;
-  store?: AppStore;
+  preloadedState?: Partial<TestRootState>;
+  store?: TestAppStore;
 }
 
 const wrapAllProviders = () => {
@@ -44,22 +41,18 @@ const wrapScreenProviders = (
   extendedRenderOptions: ExtendedRenderOptions = {},
 ) => {
   const {
-    preloadedState = {_persist: {version: 1, rehydrated: true}},
+    preloadedState = {},
     // Automatically create a store instance if no store was passed in
-    store = setupStore(preloadedState as PersistedRootState),
+    store = setupTestStore(preloadedState),
   } = extendedRenderOptions;
-
-  const persistor = persistStore(store);
 
   return ({children}: {children: React.ReactNode}) => (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ContextProviders>
-            <NavigationContainer>{children}</NavigationContainer>
-            <GlobalServiceComponents />
-          </ContextProviders>
-        </PersistGate>
+        <ContextProviders>
+          <NavigationContainer>{children}</NavigationContainer>
+          <GlobalServiceComponents />
+        </ContextProviders>
       </Provider>
     </ThemeProvider>
   );

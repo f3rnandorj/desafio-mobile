@@ -3,7 +3,9 @@ import {api} from "@api";
 import {CreateTodoParams, TodoApi, TodoItemApi, UpdateTodoParams} from ".";
 
 async function getTodoList(): Promise<TodoApi> {
+  console.log("antes");
   const response = await api.get<TodoApi>("/tasks");
+  console.log("response", response);
   return response.data;
 }
 

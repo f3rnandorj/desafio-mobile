@@ -28,6 +28,7 @@ jest.mock("redux-persist", () => {
       pause: jest.fn(),
       persist: jest.fn(),
       subscribe: jest.fn(),
+      getState: jest.fn().mockReturnValue({}),
     }),
   };
 });

@@ -6,6 +6,7 @@ export function AddNewTodoButton() {
 
   return (
     <Icon
+      testID="add-new-todo-button"
       onPress={() =>
         showModal({
           content: () => MutateTodoModal({}),

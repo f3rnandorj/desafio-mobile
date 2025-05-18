@@ -66,4 +66,4 @@ export const {
   removeCompletedTodo,
 } = todoSlice.actions;
 
-export default todoSlice.reducer;
+export const todoReducer = todoSlice.reducer;
