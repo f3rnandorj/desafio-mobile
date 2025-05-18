@@ -67,6 +67,7 @@ export function Toast({isInsideModal}: Props) {
 
   return (
     <Animated.View
+      testID="toast"
       style={[
         {
           [position]: isInsideModal ? 20 : 50,

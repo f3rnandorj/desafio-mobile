@@ -17,3 +17,17 @@ jest.mock("@react-navigation/native", () => {
     }),
   };
 });
+
+jest.mock("redux-persist", () => {
+  const actual = jest.requireActual("redux-persist");
+  return {
+    ...actual,
+    persistStore: jest.fn().mockReturnValue({
+      purge: jest.fn(),
+      flush: jest.fn(),
+      pause: jest.fn(),
+      persist: jest.fn(),
+      subscribe: jest.fn(),
+    }),
+  };
+});
