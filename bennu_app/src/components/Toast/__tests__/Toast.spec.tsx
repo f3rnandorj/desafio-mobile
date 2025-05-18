@@ -27,6 +27,20 @@ const baseToast: ToastProps = {
   },
 };
 
+function renderComponent(isInsideModal = false) {
+  render(<Toast isInsideModal={isInsideModal} />);
+
+  const toastElement = screen.getByTestId("toast");
+  const messageElement = screen.queryByText(baseToast.message!);
+  const actionButton = screen.queryByText(baseToast.action!.title!);
+
+  return {
+    toastElement,
+    messageElement,
+    actionButton,
+  };
+}
+
 beforeAll(() => {
   jest.useFakeTimers();
 });
@@ -43,20 +57,6 @@ afterAll(() => {
   jest.resetAllMocks();
   jest.useRealTimers();
 });
-
-function renderComponent(isInsideModal = false) {
-  render(<Toast isInsideModal={isInsideModal} />);
-
-  const toastElement = screen.getByTestId("toast");
-  const messageElement = screen.queryByText(baseToast.message!);
-  const actionButton = screen.queryByText(baseToast.action!.title!);
-
-  return {
-    toastElement,
-    messageElement,
-    actionButton,
-  };
-}
 
 describe("<Toast />", () => {
   it("should render with message and action button", () => {

@@ -35,6 +35,7 @@ export function BaseModal() {
 
   return (
     <Modal
+      testID="base-modal"
       animationType="slide"
       transparent
       visible
@@ -43,8 +44,10 @@ export function BaseModal() {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{flex: 1}}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <ModalContainer>
+        <TouchableWithoutFeedback
+          testID="modal-touchable-without-feedback"
+          onPress={Keyboard.dismiss}>
+          <ModalContainer testID="modal-container">
             <Pressable
               style={{flex: 1}}
               onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}

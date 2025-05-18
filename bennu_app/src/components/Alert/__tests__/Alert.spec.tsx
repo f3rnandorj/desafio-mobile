@@ -31,18 +31,6 @@ const baseAlert: AlertProps = {
   },
 };
 
-beforeEach(() => {
-  jest.clearAllMocks();
-  (useAlert as jest.Mock).mockReturnValue({
-    alert: baseAlert,
-    hideAlert: mockHideAlert,
-  });
-});
-
-afterAll(() => {
-  jest.resetAllMocks();
-});
-
 function renderComponent() {
   render(<Alert />);
 
@@ -62,6 +50,18 @@ function renderComponent() {
     cancelText,
   };
 }
+
+beforeEach(() => {
+  jest.clearAllMocks();
+  (useAlert as jest.Mock).mockReturnValue({
+    alert: baseAlert,
+    hideAlert: mockHideAlert,
+  });
+});
+
+afterAll(() => {
+  jest.resetAllMocks();
+});
 
 describe("<Alert />", () => {
   it("should render with title, subtitle, and buttons", () => {
