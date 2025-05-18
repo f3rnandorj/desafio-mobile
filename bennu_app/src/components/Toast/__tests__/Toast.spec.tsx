@@ -14,8 +14,6 @@ jest.mock("@services", () => {
   };
 });
 
-jest.useFakeTimers();
-
 const mockHideToast = jest.fn();
 
 const baseToast: ToastProps = {
@@ -29,12 +27,21 @@ const baseToast: ToastProps = {
   },
 };
 
+beforeAll(() => {
+  jest.useFakeTimers();
+});
+
 beforeEach(() => {
   jest.clearAllMocks();
   (useToast as jest.Mock).mockReturnValue({
     toast: baseToast,
     hideToast: mockHideToast,
   });
+});
+
+afterAll(() => {
+  jest.resetAllMocks();
+  jest.useRealTimers();
 });
 
 function renderComponent(isInsideModal = false) {

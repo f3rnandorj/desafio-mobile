@@ -39,6 +39,10 @@ beforeEach(() => {
   });
 });
 
+afterAll(() => {
+  jest.resetAllMocks();
+});
+
 function renderComponent() {
   render(<Alert />);
 

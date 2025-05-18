@@ -1,3 +1,7 @@
 cd bennu_app
 
+npm run lint
+
+npx tsc --noEmit
+
 npm test
