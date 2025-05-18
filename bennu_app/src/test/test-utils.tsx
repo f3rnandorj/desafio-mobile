@@ -12,7 +12,7 @@ import {ThemeProvider} from "styled-components/native";
 import {ContextProviders, GlobalServiceComponents} from "@context";
 import {theme} from "@theme";
 
-export const wrapAllProviders = () => {
+const wrapAllProviders = () => {
   return ({children}: {children: React.ReactNode}) => (
     <ThemeProvider theme={theme}>
       <NavigationContainer>{children} </NavigationContainer>
@@ -27,13 +27,13 @@ function customRender<T = unknown>(
   return render(component, {wrapper: wrapAllProviders(), ...options});
 }
 
-export const wrapScreenProviders = () => {
+const wrapScreenProviders = () => {
   return ({children}: {children: React.ReactNode}) => (
     <ThemeProvider theme={theme}>
       <ContextProviders>
-        <NavigationContainer>{children} </NavigationContainer>
+        <NavigationContainer>{children}</NavigationContainer>
+        <GlobalServiceComponents />
       </ContextProviders>
-      <GlobalServiceComponents />
     </ThemeProvider>
   );
 };

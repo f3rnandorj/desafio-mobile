@@ -22,7 +22,6 @@ describe("<Text />", () => {
 
     expect(textElement).toBeTruthy();
     expect(textElement.props.children).toBe("Sample Text");
-    // Default preset should be paragraph
     expect(textElement.props.preset).toBe("paragraph");
   });
 

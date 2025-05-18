@@ -1,11 +1,10 @@
 import React, {useEffect} from "react";
-import {ActivityIndicator, BackHandler} from "react-native";
-
-import {useTheme} from "styled-components/native";
+import {BackHandler} from "react-native";
 
 import {useAlert} from "@services";
 
 import {Icon} from "../Icon";
+import {Loading} from "../Loading";
 
 import {
   AcceptButton,
@@ -20,7 +19,6 @@ import {
 } from "./styles";
 
 export function Alert() {
-  const theme = useTheme();
   const {alert, hideAlert} = useAlert();
 
   const onConfirm = () => {
@@ -62,23 +60,23 @@ export function Alert() {
     <Container>
       <Content>
         {alert?.icon && <Icon {...alert.icon} size={40} />}
-
         {alert.title && <Title preset="heading2">{alert.title}</Title>}
-
-        <SubTitle>{alert?.subTitle}</SubTitle>
-
+        <SubTitle>{alert?.subTitle}</SubTitle>{" "}
         <ButtonsContainer>
-          <AcceptButton onPress={onConfirm} disabled={alert.isLoading}>
+          <AcceptButton
+            testID="alert-accept-button"
+            onPress={onConfirm}
+            disabled={alert.isLoading}>
             {alert.isLoading ? (
-              <ActivityIndicator size="small" color={theme.colors.primary} />
+              <Loading size="small" color="primary" />
             ) : (
               <AcceptButtonText bold color="primary">
-                {alert.acceptMessage || "Confirmar"}
+                {alert.acceptMessage || "Confirmar"}{" "}
               </AcceptButtonText>
             )}
           </AcceptButton>
 
-          <CancelButton onPress={onCancel}>
+          <CancelButton testID="alert-cancel-button" onPress={onCancel}>
             <CancelButtonText>
               {alert.cancelMessage || "Cancelar"}
             </CancelButtonText>
