@@ -5,7 +5,7 @@ import {setIsLoading, useAppDispatch} from "@features";
 import {Todo, todoService} from "..";
 
 interface Props {
-  todoId: number;
+  todoId: string;
   enabled?: boolean;
 }
 

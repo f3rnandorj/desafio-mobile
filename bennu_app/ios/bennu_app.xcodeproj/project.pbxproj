@@ -213,7 +213,6 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				B19B3E9DFE5130B6C74BA76F /* PrivacyInfo.xcprivacy in Resources */,
 				541D4A045E184F32A5F6D6AD /* Rubik-Black.ttf in Resources */,
-				BA5A5F8ACCEE43F18D3BDBC7 /* Rubik-BlackItalic.ttf in Resources */,
 				9F39D36F796D4AFD876F2B2C /* Rubik-Bold.ttf in Resources */,
 				4255593BA494464882FA0BD7 /* Rubik-BoldItalic.ttf in Resources */,
 				065F0BCD26E3442F95378221 /* Rubik-ExtraBold.ttf in Resources */,

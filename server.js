@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const tasksFilePath = path.resolve(__dirname, "tasks.json");
@@ -103,12 +104,8 @@ app.put("/task/update", (req, res) => {
 app.post("/task/create", (req, res) => {
   const tasksContainer = loadTasksFromFile();
 
-  const maxId = tasksContainer.tasks.reduce((max, task) => {
-    return task.id > max ? task.id : max;
-  }, 0);
-
   const task = {
-    id: maxId + 1,
+    id: uuidv4(),
     title: req.body.title,
     description: req.body.description,
   };

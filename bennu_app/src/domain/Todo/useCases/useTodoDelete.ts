@@ -7,7 +7,7 @@ import {todoService} from "..";
 export function useTodoDelete(options?: MutationOptions<void>) {
   const dispatch = useAppDispatch();
 
-  async function deleteTodo(todoId: number) {
+  async function deleteTodo(todoId: string) {
     dispatch(setIsLoading(true));
 
     try {

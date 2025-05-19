@@ -9,6 +9,8 @@ import {
   View,
 } from "react-native";
 
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+
 import {Text} from "@components";
 import {GlobalServiceComponents} from "@context";
 import {useAppSafeArea, useKeyboardStatus} from "@hooks";
@@ -41,42 +43,44 @@ export function BaseModal() {
       visible
       onRequestClose={hideModal}
       {...modalProps}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{flex: 1}}>
-        <TouchableWithoutFeedback
-          testID="modal-touchable-without-feedback"
-          onPress={Keyboard.dismiss}>
-          <ModalContainer testID="modal-container">
-            <Pressable
-              style={{flex: 1}}
-              onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}
-            />
+      <GestureHandlerRootView>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{flex: 1}}>
+          <TouchableWithoutFeedback
+            testID="modal-touchable-without-feedback"
+            onPress={Keyboard.dismiss}>
+            <ModalContainer testID="modal-container">
+              <Pressable
+                style={{flex: 1}}
+                onPress={isKeyboardOpen ? Keyboard.dismiss : hideModal}
+              />
 
-            <ModalContent
-              heightPercentage={heightPercentage}
-              style={{paddingBottom: bottom + 20}}>
-              <ScrollView
-                keyboardShouldPersistTaps="handled"
-                contentContainerStyle={{flexGrow: 1}}>
-                {title && (
-                  <ModalHeader style={{paddingTop: top}}>
-                    <Text preset="heading2">{title}</Text>
-                  </ModalHeader>
-                )}
+              <ModalContent
+                heightPercentage={heightPercentage}
+                style={{paddingBottom: bottom + 20}}>
+                <ScrollView
+                  keyboardShouldPersistTaps="handled"
+                  contentContainerStyle={{flexGrow: 1}}>
+                  {title && (
+                    <ModalHeader style={{paddingTop: top}}>
+                      <Text preset="heading2">{title}</Text>
+                    </ModalHeader>
+                  )}
 
-                <Divider />
+                  <Divider />
 
-                <View style={style}>
-                  <Content />
-                </View>
-              </ScrollView>
-            </ModalContent>
-          </ModalContainer>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+                  <View style={style}>
+                    <Content />
+                  </View>
+                </ScrollView>
+              </ModalContent>
+            </ModalContainer>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
 
-      <GlobalServiceComponents isInsideModal />
+        <GlobalServiceComponents isInsideModal />
+      </GestureHandlerRootView>
     </Modal>
   );
 }

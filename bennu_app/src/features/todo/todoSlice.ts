@@ -27,7 +27,7 @@ const todoSlice = createSlice({
     addTodo(state, action: PayloadAction<Todo>) {
       state.todos.push(action.payload);
     },
-    removeTodo(state, action: PayloadAction<number>) {
+    removeTodo(state, action: PayloadAction<string>) {
       state.todos = state.todos.filter(todo => todo.id !== action.payload);
     },
     updateTodo(state, action: PayloadAction<Todo>) {
@@ -47,7 +47,7 @@ const todoSlice = createSlice({
     addCompletedTodo(state, action: PayloadAction<Todo>) {
       state.concludedTodos.push(action.payload);
     },
-    removeCompletedTodo(state, action: PayloadAction<number>) {
+    removeCompletedTodo(state, action: PayloadAction<string>) {
       state.concludedTodos = state.concludedTodos.filter(
         todoId => todoId.id !== action.payload,
       );
