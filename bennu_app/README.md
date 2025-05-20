@@ -37,6 +37,7 @@ The project includes a fully-featured Todo list with multiple views (All, Active
 - **Husky**: Git hooks tool to enforce code quality checks before commits.
 - **Styled Components**: CSS-in-JS library for styling React components with tagged template literals.
 - **React Native MMKV**: High-performance key-value storage framework for React Native.
+- **React Native Draggable FlatList**: Library for creating drag-and-drop reorderable lists with smooth animations.
 - **Reanimated**: React Native's animation library for creating smooth animations and interactions.
 
 ## Requirements
@@ -76,12 +77,21 @@ yarn install
 # Install iOS dependencies (if running on iOS)
 cd ios && pod install && cd ..
 
+# If in the root start the server
+yarn install # Install server dependencies
+yarn start # Run the backend server
+
+
+cd bennu_app
+
 # Run on iOS
 yarn ios
 
 # Run on Android
 yarn android
 ```
+
+**Important:** The app requires the backend server to be running to fetch and manage todo items. The server must be started before launching the app.
 
 ## How to Run Tests
 
@@ -154,6 +164,7 @@ This architecture provides several benefits:
 
 - **Multiple Todo Views**: Separate screens for all, active, and completed todos
 - **Add/Edit/Delete Tasks**: Full CRUD operations for todo management
+- **Drag and Drop Reordering**: Intuitive task reordering with smooth animations using react-native-draggable-flatlist
 - **Local Storage**: Persistent storage of todos between app launches using Redux Persist with MMKV
 - **Hybrid State Management**: Redux for business logic and Context API for global services
 - **Form Validation**: Robust form validation using Zod schemas
@@ -162,6 +173,19 @@ This architecture provides several benefits:
 - **Type Safety**: Full TypeScript implementation for robust code
 - **Responsive Design**: Adapts to various screen sizes and orientations
 - **Comprehensive Testing**: Unit and integration tests for components and functionality
+
+## Drag and Drop Functionality
+
+The app features a smooth drag and drop system for reordering todo items, implemented with react-native-draggable-flatlist:
+
+- **Intuitive Interaction**: Long-press on any todo item to initiate dragging
+- **Visual Feedback**: Scale animation provides clear feedback when items are being moved
+- **Persistent Ordering**: Todo order is preserved between app sessions
+- **Redux Integration**: Task reordering is managed through Redux actions and state
+- **Order Tracking**: Each todo has an `order` property that determines its position in the list
+- **Optimized Rendering**: Tasks are efficiently reordered without unnecessary re-renders
+
+The implementation uses Redux to manage the reordering logic through a dedicated `reorderTodo` action. When a user drags and drops a task, the action updates the position of all affected todos and maintains their order properties.
 
 ## Figma Design
 
@@ -184,6 +208,7 @@ The App Icon for this project was generated using [FaviconGenerator](https://fav
 2. Add new todos using the add button
 3. Mark todos as complete by tapping on them
 4. Edit or delete todos through the item menu
+5. Reorder todos by long-pressing on a task and dragging it to a new position
 
 ---
 
@@ -220,6 +245,7 @@ O projeto inclui uma lista de tarefas completa com múltiplas visualizações (T
 - **Husky**: Ferramenta de hooks Git para impor verificações de qualidade de código antes dos commits.
 - **Styled Components**: Biblioteca CSS-in-JS para estilização de componentes React com literais de template.
 - **React Native MMKV**: Framework de armazenamento chave-valor de alto desempenho para React Native.
+- **React Native Draggable FlatList**: Biblioteca para criar listas reordenáveis com funcionalidade de arrastar e soltar com animações suaves.
 - **Reanimated**: Biblioteca de animações do React Native para criar animações suaves e interações.
 
 ## Requisitos
@@ -246,6 +272,8 @@ Para encontrar seu endereço IP:
 
 ## Como Executar
 
+## Como Executar
+
 Clone o repositório e instale as dependências:
 
 ```bash
@@ -259,12 +287,22 @@ yarn install
 # Instale as dependências iOS (se executar no iOS)
 cd ios && pod install && cd ..
 
+# Inicie o servidor
+cd ..
+npm install # Instale as dependências do servidor
+node server.js # Execute o servidor backend
+
+# Em uma nova janela do terminal
+cd bennu_app
+
 # Execute no iOS
 yarn ios
 
 # Execute no Android
 yarn android
 ```
+
+**Importante:** O aplicativo requer que o servidor backend esteja em execução para buscar e gerenciar itens de tarefas. O servidor deve ser iniciado antes de lançar o aplicativo.
 
 ## Como Executar Testes
 
@@ -337,6 +375,7 @@ Esta arquitetura fornece diversos benefícios:
 
 - **Múltiplas Visualizações de Tarefas**: Telas separadas para todas, ativas e concluídas
 - **Adicionar/Editar/Excluir Tarefas**: Operações CRUD completas para gerenciamento de tarefas
+- **Reordenação por Arrastar e Soltar**: Reordenação intuitiva de tarefas com animações suaves usando react-native-draggable-flatlist
 - **Armazenamento Local**: Armazenamento persistente de tarefas entre inicializações do aplicativo usando Redux Persist com MMKV
 - **Gerenciamento de Estado Híbrido**: Redux para lógica de negócios e Context API para serviços globais
 - **Validação de Formulário**: Validação robusta de formulário usando esquemas Zod
@@ -345,6 +384,19 @@ Esta arquitetura fornece diversos benefícios:
 - **Segurança de Tipos**: Implementação completa de TypeScript para código robusto
 - **Design Responsivo**: Adapta-se a vários tamanhos e orientações de tela
 - **Testes Abrangentes**: Testes unitários e de integração para componentes e funcionalidades
+
+## Funcionalidade de Arrastar e Soltar
+
+O aplicativo conta com um sistema suave de arrastar e soltar para reordenar itens de tarefas, implementado com react-native-draggable-flatlist:
+
+- **Interação Intuitiva**: Pressione longamente qualquer item de tarefa para iniciar o arrasto
+- **Feedback Visual**: Animação de escala fornece feedback claro quando os itens estão sendo movidos
+- **Ordenação Persistente**: A ordem das tarefas é preservada entre as sessões do aplicativo
+- **Integração com Redux**: A reordenação de tarefas é gerenciada através de ações e estado do Redux
+- **Rastreamento de Ordem**: Cada tarefa possui uma propriedade `order` que determina sua posição na lista
+- **Renderização Otimizada**: As tarefas são reordenadas eficientemente sem re-renderizações desnecessárias
+
+A implementação usa Redux para gerenciar a lógica de reordenação através de uma ação dedicada `reorderTodo`. Quando um usuário arrasta e solta uma tarefa, a ação atualiza a posição de todas as tarefas afetadas e mantém suas propriedades de ordem.
 
 ## Design Figma
 
@@ -367,3 +419,4 @@ O ícone deste aplicativo foi gerado usando [FaviconGenerator](https://favicon.i
 2. Adicione novas tarefas usando o botão adicionar
 3. Marque tarefas como concluídas tocando nelas
 4. Edite ou exclua tarefas através do menu do item
+5. Reordene tarefas pressionando longamente uma tarefa e arrastando-a para uma nova posição
