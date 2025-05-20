@@ -1,8 +1,11 @@
+![Static Badge](https://img.shields.io/badge/Fernando%20H-gray)
+[![Static Badge](https://img.shields.io/badge/Bennu-App-%233B82F6?style=flat&labelColor=gray)](https://bennu.com.br/)
+
 > **OBS:** Esta documentação está disponível em duas versões: Inglês e Português. Role para baixo para visualizar a versão em Português (após a seção "---").
 
-🇺🇸 You can also see the application works here:
+🇺🇸 You can see the application works here: https://drive.google.com/file/d/1_W2zCaFUsouahxZSQIMNo0uqHVjxTy9J/view?usp=sharing
 
-🇧🇷 Você também pode ver a aplicação funcionando por aqui:
+🇧🇷 Você pode ver a aplicação funcionando por aqui: https://drive.google.com/file/d/1_W2zCaFUsouahxZSQIMNo0uqHVjxTy9J/view?usp=sharing
 
 # Bennu Challenge App 🇺🇸 📱
 
@@ -50,6 +53,8 @@ The project includes a fully-featured Todo list with multiple views (All, Active
 
 This project uses `react-native-dotenv` to manage environment variables. You'll need to create a `.env` file in the root directory with the following variables:
 
+- IP_ADDRESS
+
 **Important Note:** You must use your machine's local IP address (e.g., 192.168.1.X) instead of localhost or 127.0.0.1. This is necessary because:
 
 1. When running on a physical device, "localhost" refers to the device itself, not your development machine
@@ -83,6 +88,9 @@ cd bennu_app
 # Install React Native app dependencies
 yarn install
 
+# Crie o arquivo .env com base no .env.example
+cp .env.example .env
+
 # Install iOS dependencies (if running on iOS)
 cd ios && pod install && cd ..
 
@@ -96,6 +104,8 @@ yarn android
 **Important:** The app requires the backend server to be running to fetch and manage todo items. The server must be started before launching the app.
 
 ## How to Run Tests
+
+![image](https://github.com/user-attachments/assets/0e2329db-5097-4d87-8e91-b3889d09a824)
 
 This project includes unit and component tests using Jest and React Native Testing Library. Here's how to run them:
 
@@ -265,6 +275,8 @@ O projeto inclui uma lista de tarefas completa com múltiplas visualizações (T
 
 Este projeto utiliza `react-native-dotenv` para gerenciar variáveis de ambiente. Você precisará criar um arquivo `.env` no diretório raiz com as seguintes variáveis:
 
+- IP_ADDRESS
+
 **Nota Importante:** Você deve usar o endereço IP local da sua máquina (ex: 192.168.1.X) em vez de localhost ou 127.0.0.1. Isso é necessário porque:
 
 1. Quando executado em um dispositivo físico, "localhost" se refere ao próprio dispositivo, não à sua máquina de desenvolvimento
@@ -298,6 +310,9 @@ cd bennu_app
 # Instale as dependências do app React Native
 yarn install
 
+# Crie o arquivo .env com base no .env.example
+cp .env.example .env
+
 # Instale as dependências iOS (se executar no iOS)
 cd ios && pod install && cd ..
 
@@ -311,6 +326,8 @@ yarn android
 **Importante:** O aplicativo requer que o servidor backend esteja em execução para buscar e gerenciar itens de tarefas. O servidor deve ser iniciado antes de lançar o aplicativo.
 
 ## Como Executar Testes
+
+![image](https://github.com/user-attachments/assets/bb46475f-3377-44f3-97f6-d887119da876)
 
 Este projeto inclui testes unitários e de componentes usando Jest e React Native Testing Library. Veja como executá-los:
 
