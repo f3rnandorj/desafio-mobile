@@ -47,8 +47,8 @@ afterAll(() => {
 describe("<ActiveTodoScreen />", () => {
   it("renders the screen with the correct title", () => {
     const mockTodos: Todo[] = [
-      {id: 1, title: "Task 1", completed: false},
-      {id: 2, title: "Task 2", completed: false},
+      {id: "1", title: "Task 1", completed: false, order: 1},
+      {id: "2", title: "Task 2", completed: false, order: 2},
     ];
 
     const {titleElement} = renderScreenComponent({
@@ -67,8 +67,8 @@ describe("<ActiveTodoScreen />", () => {
 
   it("displays only active todos", () => {
     const mockTodos: Todo[] = [
-      {id: 1, title: "Active task", completed: false},
-      {id: 2, title: "Completed task", completed: true},
+      {id: "1", title: "Active task", completed: false, order: 1},
+      {id: "2", title: "Completed task", completed: true, order: 2},
     ];
 
     renderScreenComponent({
@@ -88,7 +88,7 @@ describe("<ActiveTodoScreen />", () => {
 
   it("displays the empty state when there are no active todos", () => {
     const mockTodos: Todo[] = [
-      {id: 1, title: "Completed task", completed: true},
+      {id: "1", title: "Completed task", completed: true, order: 1},
     ];
 
     renderScreenComponent({

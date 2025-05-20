@@ -52,6 +52,27 @@ const todoSlice = createSlice({
         todoId => todoId.id !== action.payload,
       );
     },
+    reorderTodo(state, action: PayloadAction<{id: string; newIndex: number}>) {
+      const {id, newIndex} = action.payload;
+
+      const currentIndex = state.todos.findIndex(todo => todo.id === id);
+      if (
+        currentIndex === -1 ||
+        newIndex < 0 ||
+        newIndex >= state.todos.length
+      ) {
+        return;
+      }
+
+      const updatedTodos = [...state.todos];
+      const [movedTodo] = updatedTodos.splice(currentIndex, 1);
+      updatedTodos.splice(newIndex, 0, movedTodo);
+
+      state.todos = updatedTodos.map((todo, index) => ({
+        ...todo,
+        order: index,
+      }));
+    },
   },
 });
 
@@ -64,6 +85,7 @@ export const {
   setIsGetTodoListError,
   addCompletedTodo,
   removeCompletedTodo,
+  reorderTodo,
 } = todoSlice.actions;
 
 export const todoReducer = todoSlice.reducer;

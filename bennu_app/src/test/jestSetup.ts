@@ -32,3 +32,5 @@ jest.mock("redux-persist", () => {
     }),
   };
 });
+
+jest.mock("react-native-draggable-flatlist");

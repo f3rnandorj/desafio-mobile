@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 import {Text} from "@components";
 
-export const TaskContainer = styled.View`
+export const TaskContainer = styled.Pressable`
   padding-left: ${({theme}) => theme.spacing.s4}px;
   padding-right: ${({theme}) => theme.spacing.s4}px;
   margin-bottom: ${({theme}) => theme.spacing.s8}px;
@@ -36,4 +36,5 @@ export const DescriptionText = styled(Text)<{completed: boolean}>`
 
 export const TaskActions = styled.View`
   flex-direction: row;
+  gap: ${({theme}) => theme.spacing.s16}px;
 `;

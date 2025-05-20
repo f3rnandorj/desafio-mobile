@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import {Text} from "@components";
 
 export const EmptyState = styled.View`
+  flex: 1;
   align-items: center;
   justify-content: center;
   padding: ${({theme}) => theme.spacing.s48}px;

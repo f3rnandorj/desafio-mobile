@@ -61,7 +61,7 @@ export function Alert() {
       <Content>
         {alert?.icon && <Icon {...alert.icon} size={40} />}
         {alert.title && <Title preset="heading2">{alert.title}</Title>}
-        <SubTitle>{alert?.subTitle}</SubTitle>{" "}
+        <SubTitle>{alert?.subTitle}</SubTitle>
         <ButtonsContainer>
           <AcceptButton
             testID="alert-accept-button"

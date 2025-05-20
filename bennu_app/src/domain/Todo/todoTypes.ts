@@ -1,7 +1,10 @@
-export interface Todo {
+export interface TodoAppAtributes {
+  completed: boolean;
+  order: number;
+}
+export interface Todo extends TodoAppAtributes {
   id: string;
   title: string;
-  completed: boolean;
   description?: string;
 }
 

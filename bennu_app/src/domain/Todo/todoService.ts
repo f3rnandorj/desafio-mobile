@@ -11,7 +11,9 @@ async function getTodoList(): Promise<Todo[]> {
 
   const tasks =
     allTodos.tasks.length > 0
-      ? allTodos.tasks.map(todo => mapTodoWithConcluded(todo))
+      ? allTodos.tasks.map((todo, index) =>
+          mapTodoWithAppAtributes(todo, index),
+        )
       : [];
 
   await syncTodosAndUpdateStore(tasks);
@@ -21,12 +23,12 @@ async function getTodoList(): Promise<Todo[]> {
 
 async function getTodoById(id: string): Promise<Todo> {
   const {tasks} = await todoApi.getTodoById(id);
-  return mapTodoWithConcluded(tasks[0]);
+  return mapTodoWithAppAtributes(tasks[0], 0);
 }
 
 async function updateTodo(params: UpdateTodoParams): Promise<Todo> {
   const response = await todoApi.updateTodo(params);
-  return mapTodoWithConcluded(response);
+  return mapTodoWithAppAtributes(response, 0);
 }
 
 async function createTodo(params: CreateTodoParams): Promise<void> {
@@ -37,17 +39,24 @@ async function deleteTodo(id: string): Promise<void> {
   await todoApi.deleteTodo(id);
 }
 
-function mapTodoWithConcluded(data: TodoItemApi): Todo {
+/**
+ * If this function is called in any different function of getTodoList, it means that the todo already have a order, so the index passed can be any value
+ */
+function mapTodoWithAppAtributes(data: TodoItemApi, index: number): Todo {
   const base = todoAdapter.toTodo(data);
+  const existingTodos = store.getState().todo.todos;
   const concludedTodos = store.getState().todo.concludedTodos;
 
   const completed = concludedTodos.some(
     concludedTodo => concludedTodo.id === data.id,
   );
 
+  const existingTodo = existingTodos.find(t => t.id === data.id);
+
   return {
     ...base,
     completed,
+    order: existingTodo?.order ?? index,
   };
 }
 

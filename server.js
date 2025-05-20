@@ -44,19 +44,19 @@ app.get("/tasks", (req, res) => {
  * If id is not valid number return status code 400.
  */
 app.get("/task/:id", (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.params.id;
 
-  if (!Number.isNaN(id)) {
-    const { tasks } = loadTasksFromFile();
-    const task = tasks.find((item) => item.id === id);
-
-    if (task) {
-      return res.status(200).json({ task });
-    } else {
-      return res.status(404).json({ message: "Not found." });
-    }
-  } else {
+  if (!id || typeof id !== "string") {
     return res.status(400).json({ message: "Bad request." });
+  }
+
+  const { tasks } = loadTasksFromFile();
+  const task = tasks.find((item) => item.id === id);
+
+  if (task) {
+    return res.status(200).json({ task });
+  } else {
+    return res.status(404).json({ message: "Not found." });
   }
 });
 
@@ -73,22 +73,22 @@ app.get("/task/:id", (req, res) => {
  * If the provided id is not a valid number return a status code 400.
  */
 app.put("/task/update", (req, res) => {
-  const id = parseInt(req.body.id, 10);
+  const id = req.body.id;
 
-  if (!Number.isNaN(id)) {
-    const tasksContainer = loadTasksFromFile();
-    const task = tasksContainer.tasks.find((item) => item.id === id);
-
-    if (task) {
-      task.title = req.body.title;
-      task.description = req.body.description;
-      saveTasksToFile(tasksContainer);
-      return res.status(200).json({ task });
-    } else {
-      return res.status(404).json({ message: "Not found" });
-    }
-  } else {
+  if (typeof id !== "string") {
     return res.status(400).json({ message: "Bad request" });
+  }
+
+  const tasksContainer = loadTasksFromFile();
+  const task = tasksContainer.tasks.find((item) => item.id === id);
+
+  if (task) {
+    task.title = req.body.title;
+    task.description = req.body.description;
+    saveTasksToFile(tasksContainer);
+    return res.status(200).json({ task });
+  } else {
+    return res.status(404).json({ message: "Not found" });
   }
 });
 
@@ -129,24 +129,24 @@ app.post("/task/create", (req, res) => {
  * If the provided id is not a valid number return a status code 400.
  */
 app.delete("/task/delete", (req, res) => {
-  const id = parseInt(req.body.id, 10);
+  const id = req.body.id;
 
-  if (!Number.isNaN(id)) {
-    const tasksContainer = loadTasksFromFile();
-    const taskIndex = tasksContainer.tasks.findIndex((item) => item.id === id);
-
-    if (taskIndex !== -1) {
-      tasksContainer.tasks.splice(taskIndex, 1);
-      saveTasksToFile(tasksContainer);
-
-      return res.status(200).json({
-        message: "Deleted successfully",
-      });
-    } else {
-      return res.status(404).json({ message: "Not found" });
-    }
-  } else {
+  if (typeof id !== "string") {
     return res.status(400).json({ message: "Bad request" });
+  }
+
+  const tasksContainer = loadTasksFromFile();
+  const taskIndex = tasksContainer.tasks.findIndex((item) => item.id === id);
+
+  if (taskIndex !== -1) {
+    tasksContainer.tasks.splice(taskIndex, 1);
+    saveTasksToFile(tasksContainer);
+
+    return res.status(200).json({
+      message: "Deleted successfully",
+    });
+  } else {
+    return res.status(404).json({ message: "Not found" });
   }
 });
 

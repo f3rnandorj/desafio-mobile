@@ -20,9 +20,10 @@ import {
 
 type TodoItemProps = {
   todo: Todo;
+  onLongPress?: () => void;
 };
 
-export function TodoItem({todo}: TodoItemProps) {
+export function TodoItem({todo, onLongPress}: TodoItemProps) {
   const {shadows, spacing} = useTheme();
 
   const {completed, id, title, description} = todo;
@@ -84,7 +85,7 @@ export function TodoItem({todo}: TodoItemProps) {
   }
 
   return (
-    <TaskContainer>
+    <TaskContainer onLongPress={onLongPress}>
       <TaskCard {...shadows.md}>
         {completed ? (
           <Icon
@@ -116,14 +117,11 @@ export function TodoItem({todo}: TodoItemProps) {
         </TaskText>
 
         <TaskActions>
-          <Icon
-            onPress={handleEdit}
-            name="pen"
-            color="gray400"
-            style={{paddingHorizontal: spacing.s16}}
-          />
+          <Icon onPress={handleEdit} name="pen" color="gray400" />
 
           <Icon onPress={handleDelete} name="trash-can" color="danger" />
+
+          <Icon name="gesture-swipe-vertical" />
         </TaskActions>
       </TaskCard>
     </TaskContainer>
